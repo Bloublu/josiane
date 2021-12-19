@@ -1,0 +1,10 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Nom de Poule !{% endblock %}
+
+{% block body %}
+<div> Voici quelque idée de nom pour vos poules : </div>
+    {% for  name in liste  %}
+        {{ name.name }}
+    {% endfor %}
+{% endblock %}
