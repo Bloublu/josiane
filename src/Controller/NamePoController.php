@@ -11,7 +11,7 @@ use Symfony\Component\Routing\Annotation\Route;
 class NamePoController extends AbstractController
 {
     /**
-     * @Route ("/", name="NamePoIndex")
+     * @Route ("/Name", name="NamePoIndex")
      */
     public function index(NamePouleRepository $namePouleRepository): Response
     {
