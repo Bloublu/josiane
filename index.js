@@ -11,7 +11,7 @@ const port = 3000;
 
 // param
 app.set('view engine', 'ejs');
-app.set('view', path.join(__dirname, 'views'));
+//app.set('view', path.join(__dirname, 'views'));
 app.use(express.static('public'));
 
 //routes
