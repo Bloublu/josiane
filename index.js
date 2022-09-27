@@ -4,6 +4,7 @@ const path = require('path');
 
 // instance variables
 const app = express();
+const port = 3000;
 
 // connect BDD
 
