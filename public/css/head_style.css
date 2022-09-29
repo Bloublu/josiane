@@ -7,9 +7,8 @@
     grid-template-columns: repeat(10, 1fr);
     grid-template-rows: 20px, 20px;
     
-    background: #575554;
-		background: -webkit-linear-gradient(to right, #0b0b0b, #fff8f5);
-		background: linear-gradient(to right, #0b0b0b, #fff8f5);
+    background: #272525;
+    background : linear-gradient(to bottom, #272525, 93%, #fffcb9e8); 
 }
 
 /* Param img jojo*/
@@ -42,13 +41,20 @@
     grid-row: 1;
     align-self: flex-start;
     text-align: center;
-    margin-top: 15px;
+    margin-top: 25px;
 }
 
 .header_ahref a {
     display: inline;
     margin: 10px;
     font-size: 1.5em;
+    color: #fff;
+    text-decoration: none;
+}
+.separateur{
+  display: inline-block;
+  font-size: 1.5em;
+  color: #fff;
 }
 
 :root{
@@ -57,7 +63,7 @@
 
   nav {
     width: 100%;
-    font-size: 20px;
+    font-size: 15px;
     font-weight: bolder;
     position: sticky;
     top: 0;
@@ -66,7 +72,7 @@
   nav > ul {
     display: flex;
     text-align: center;
-    box-shadow: 0px 1px 2px 1px rgba(0,0,0,0.3);
+    box-shadow: 0px 1px 2px 0px rgba(0,0,0,0.3);
     height: var(--hauteur-menu);
     list-style-type: none;
   }
@@ -117,14 +123,14 @@
     display: flex;
   }
   nav > ul > li:hover > a{
-    color: #f1a604;
+    color: #ff9e02;
   }
   .sous-menu > li:hover {
     background-color: #e0ac0315;
   }
   
   .sous-menu > li:hover > a {
-    color: #f1a604;
+    color: #ff9e02;
   }
   @keyframes rotationFleche {
     0% {
@@ -140,14 +146,14 @@
   @keyframes apparitionSousMenu {
     0% {
       box-shadow: 0px 3px 3px 1px rgba(0,0,0,0);
-      border-top: 3px solid #fd8a08;
+      border-top: 3px solid #fffcb9e8;
     }
     30% {
       box-shadow: 0px 3px 3px 1px rgba(0,0,0,0.3);
     }
     100% {
       max-height: 50em;
-      border-top: 3px solid #fd8a08;
+      border-top: 3px solid #fffcb9e8;
       box-shadow: 0px 3px 3px 1px rgba(0,0,0,0.3);
     }
   }
