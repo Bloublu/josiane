@@ -1,5 +1,5 @@
 .presentation {
-    background-color: #f6be0533;
+    background-color: #fffcb9e8;
 }
 
 img {
@@ -9,10 +9,12 @@ img {
 .justeprix {
     display: block;
     text-align: center;
+    background-color: rgb(79, 63, 63);
 }
 iframe {
     height: 500px;
     width: 1000px;
     border: 5px solid #fd8a08;
     margin: 10px;
+
 }

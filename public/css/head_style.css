@@ -8,8 +8,8 @@
     grid-template-rows: 20px, 20px;
     
     background: #575554;
-		background: -webkit-linear-gradient(to right, #22221f, #fff8f5);
-		background: linear-gradient(to right, #22221f, #fff8f5);
+		background: -webkit-linear-gradient(to right, #0b0b0b, #fff8f5);
+		background: linear-gradient(to right, #0b0b0b, #fff8f5);
 }
 
 /* Param img jojo*/
