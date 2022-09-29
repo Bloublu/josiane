@@ -17,7 +17,7 @@ app.use(express.static('public'));
 //routes
 
 app.get('/', (req, res) => {
-    res.render('laBase');
+    res.render('home');
 });
 
 app.use((req, res) => {

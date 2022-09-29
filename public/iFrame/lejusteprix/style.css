@@ -1,0 +1,42 @@
+html, body {  
+    background: -webkit-linear-gradient(to right, #6fdfdf, #11424c);
+    background: linear-gradient(to right, #6fdfdf, #11424c);
+    min-width: 500px;
+}
+  
+  header {
+    color: #ff7315;
+    text-align: center;
+    font-size: 3em;
+  }
+
+  #btn{
+    text-align: center;
+  }
+
+  button{
+    background-color: #ff7315;
+    border-color: #f6a168;
+    color: white;
+  }
+  
+  #instructions {
+    color: white;
+  }
+  
+  .instruction {
+    padding: 15px;
+    margin: 10px 0;
+  }
+  
+  .plus {
+    background-color: #ef4253;
+  }
+  
+  .moins {
+    background-color: #ffa372;
+  }
+  
+  .fini {
+    background-color : #0c9463;
+  }

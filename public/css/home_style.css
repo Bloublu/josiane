@@ -1,0 +1,18 @@
+.presentation {
+    background-color: #f6be0533;
+}
+
+img {
+    height: auto;
+    width: 100%;
+}
+.justeprix {
+    display: block;
+    text-align: center;
+}
+iframe {
+    height: 500px;
+    width: 1000px;
+    border: 5px solid #fd8a08;
+    margin: 10px;
+}
