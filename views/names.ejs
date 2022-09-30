@@ -9,5 +9,21 @@
 <%-include('partials/header')%>
 <%-include('partials/nav')%>
     <h1>PAGE NAMES</h1>
+    <div>
+        <h2>saisir un nom </h2>
+    </div>
+    <div>
+        <form action="/names" method="post">
+            <div>
+                <label>Votre idee de nom pour une poule ou un coq</label><br>
+                <input type="text" name="nomPouleCoq" placeholder="nom Poule & Coq"><br>
+                <label>Votre nom est pour une Poule (cocher pour oui)</label>
+                <input type="checkbox" name="Poule"><br>
+                <label>Votre nom est pour une Coq (cocher pour oui)</label>
+                <input type="checkbox" name="Coq"><br>
+                <button type="submit">Valider</button>
+            </div>
+        </form>
+    </div>
 </body>
 </html>
