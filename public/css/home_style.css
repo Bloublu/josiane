@@ -7,3 +7,51 @@ img {
     width: 100%;
 }
 
+
+
+
+
+
+
+
+/* mise en forme de la page de erreur404 */
+
+.erreurContainer {
+    display: grid;
+    grid-template-columns: repeat(10, 1fr);
+    grid-template-rows: 100%;
+}
+
+.erreur404 {
+    grid-column: 4/11 ;
+    grid-row: 1;
+    margin: 150px;
+}
+
+.erreur404 h1 {
+    font-size: 5em;
+}
+
+.erreur404 h2 {
+    font-size: 4em;
+}
+
+.erreur404 p {
+    font-size: 2em;
+}
+
+.erreur404 a {
+    font-size: 3em;
+    color: #debb0e;
+    text-decoration: none;
+}
+
+.erreurImg {
+    grid-column: 1/6;
+    grid-row: 1;
+    margin-left: 20px;
+    height: auto;
+    width: 70%;
+    
+}
+/* #################################################################################################*/

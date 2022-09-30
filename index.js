@@ -30,8 +30,7 @@ app.use('/', games_routes);
 
 app.use((req, res) => {
    res.status(404);
-   //todo: créer notre page perso err 404 et rediriger sur cette page plutot que le message ci dessous.
-   res.send('Page non trouvée !!') 
+   res.render('erreur404'); 
 });
 
 app.listen(port, () => {
