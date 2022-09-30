@@ -51,6 +51,11 @@
     color: #fff;
     text-decoration: none;
 }
+
+.header_ahref a:hover {
+  color: #fffcb9e8;
+}
+
 .separateur{
   display: inline-block;
   font-size: 1.5em;
