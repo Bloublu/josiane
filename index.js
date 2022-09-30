@@ -4,6 +4,9 @@ const path = require('path');
 const presentation_routes = require('./routes/presentation_routes');
 const names_routes = require('./routes/names_routes');
 const astuce_routes = require('./routes/astuce_routes');
+const partage_routes = require('./routes/partage_routes');
+const recette_routes = require('./routes/recette_routes');
+const games_routes = require('./routes/games_routes');
 
 // instance variables
 const app = express();
@@ -21,6 +24,9 @@ app.use(express.static('public'));
 app.use('/', presentation_routes);
 app.use('/', names_routes);
 app.use('/', astuce_routes);
+app.use('/', partage_routes);
+app.use('/', recette_routes);
+app.use('/', games_routes);
 
 app.use((req, res) => {
    res.status(404);
