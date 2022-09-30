@@ -1,6 +1,9 @@
 // import 
 const express = require('express');
 const path = require('path');
+const presentation_routes = require('./routes/presentation_routes');
+const names_routes = require('./routes/names_routes');
+const astuce_routes = require('./routes/astuce_routes');
 
 // instance variables
 const app = express();
@@ -11,14 +14,13 @@ const port = 3000;
 
 // param
 app.set('view engine', 'ejs');
-//app.set('view', path.join(__dirname, 'views'));
+app.set('views', path.join(__dirname, 'views'));
 app.use(express.static('public'));
 
 //routes
-
-app.get('/', (req, res) => {
-    res.render('home');
-});
+app.use('/', presentation_routes);
+app.use('/', names_routes);
+app.use('/', astuce_routes);
 
 app.use((req, res) => {
    res.status(404);
