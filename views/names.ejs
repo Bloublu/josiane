@@ -25,5 +25,15 @@
             </div>
         </form>
     </div>
+    <div>
+        <h1> Nom pour une Poule</h1>
+        <div>
+            <ul>
+                <% result.forEach((resul) => { %>
+                    <li> Name:<%= resul.nom %></li>
+                 <% }); %> 
+            </ul> 
+        </div>
+    </div>
 </body>
 </html>
