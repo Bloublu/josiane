@@ -8,6 +8,13 @@
 <body>
 <%-include('partials/header')%>
 <%-include('partials/nav')%>
+
+    <div>
+        <% if( errors.length) { %> 
+            <h4 style="color: red;"> <%= errors %>   </h4>    
+        <% } %> 
+    </div>
+
     <h1>PAGE NAMES</h1>
     <div>
         <h2>saisir un nom </h2>

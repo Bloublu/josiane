@@ -2,6 +2,8 @@
 // import 
 const express = require('express');
 const path = require('path');
+const session = require('express-session');
+const flash = require('connect-flash')
 const presentation_routes = require('./routes/presentation_routes');
 const names_routes = require('./routes/names_routes');
 const astuce_routes = require('./routes/astuce_routes');
@@ -30,6 +32,17 @@ app.use(express.static('public')); //reduire route pour public
 app.use(express.urlencoded({extended: false})); // pour que express puisse gerer les forms
 app.use(express.json()); // utiliser le format json pour express
 app.use(myConnection(mysql, dbOptions, 'single'));// utiliser connection BDD
+
+// param session 
+app.set('trust proxy', 1) // trust first proxy
+app.use(session({
+  secret: 'keyboard cat', // TODO keyboard cat est une clé, comme un code, il faut la modifier et la conserver a l'abri
+  resave: false,
+  saveUninitialized: true,
+  //cookie: { secure: true } // pour connection https secure
+}));
+
+app.use(flash()); // permet d'envoie des message a la view via controllers, marche avec les sessions
 
 //routes
 app.use('/', presentation_routes);
