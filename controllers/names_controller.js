@@ -15,7 +15,7 @@ const names = (req, res, next) =>{
                      res.render('names', {
                         nameP: nameP,
                         nameC: nameC
-                    })                       
+                    });                       
                 }catch(error){
                     console.log(error);
                 }
