@@ -1,19 +1,32 @@
 // todo a priori mon chemin est bon, juste probleme de connection BDD. voir pakcage 'pool', puis 
 //  faire un app.use de qquch pour utiliser ma connection. attention doit aussi gerer la deconnection
 //  avec connection.end. mais plus tard.
-//  On peut aussi voir la doc pour express-connections pour s'en servir a la place de pool, voir sinon supprimer.
+//  On peut aussi voir la doc pour express-connections pour s'en servir a la place de pool, 
+//  voir sinon supprimer.
 
 // import 
 const express = require('express');
 const path = require('path');
-const mysql = require('mysql');
-const connection = mysql.createConnection({
-    host : 'localhost',
-    user : 'root',
-    password : '',
-    database : 'josiane'
-});
-connection.connect();
+//const mysql = require('mysql');
+// const connection = mysql.createConnection({
+//     host : 'localhost',
+//     user : 'root',
+//     password : '',
+//     database : 'josiane'
+// });
+// connection.connect();
+
+const mysql = require('mysql'), // node-mysql module
+    myConnection = require('express-myconnection'), // express-myconnection module
+    dbOptions = {
+        host : 'localhost',
+        user : 'root',
+        password : '',
+        database : 'josiane'
+    };
+  
+
+
 
 //const myconnection = require('express-myconnection');
 const presentation_routes = require('./routes/presentation_routes');
@@ -45,6 +58,8 @@ app.use(express.static('public')); //reduire route pour public
 //app.use(myconnection(connection)); // utiliser connection BDD
 app.use(express.urlencoded({extended: false})); // pour que express puisse gerer les forms
 app.use(express.json()); // utiliser le format json pour express
+
+app.use(myConnection(mysql, dbOptions, 'single'));
 
 //routes
 app.use('/', presentation_routes);

@@ -29,8 +29,18 @@
         <h1> Nom pour une Poule</h1>
         <div>
             <ul>
-                <% result.forEach((resul) => { %>
-                    <li> Name:<%= resul.nom %></li>
+                <% nameP.forEach((P) => { %>
+                    <li><%= P.nom %></li>
+                 <% }); %> 
+            </ul> 
+        </div>
+    </div>
+    <div>
+        <h1> Nom pour une Coq</h1>
+        <div>
+            <ul>
+                <% nameC.forEach((P) => { %>
+                    <li><%= P.nom %></li>
                  <% }); %> 
             </ul> 
         </div>

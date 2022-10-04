@@ -1,23 +1,30 @@
+const connection = require('express-myconnection');
 const nameP = require('../models/namePoule_models');
+const nameC = require('../models/namePoule_models');
 
 
-    
-    
-const names = async (req, res) => { await connection.query('SELECT nom FROM nompoules', [], (error, result) => {
-        try{
-            console.log(result[0].nom);
-            res.render('names', {result: result});
-            console.log(result.length);
-        }catch(error){
-            console.log(error);
-        }
-    });   
+const names = (req, res, next) =>{
+
+    req.getConnection(async (err, connection) =>{
+        if (err) {
+            return next(err);
+        }     
+        await connection.query('SELECT nom FROM nompoules', [], (error, nameP) => {
+            connection.query('SELECT nom FROM nomcoqs', [], (error, nameC) => {
+                try{     
+                     res.render('names', {
+                        nameP: nameP,
+                        nameC: nameC
+                    })                       
+                }catch(error){
+                    console.log(error);
+                }
+            });
+        });    
+    }); 
 };
-    
-
 
 const names_poule = async (req, res) => {
-    await nameP.find();
     res.render('names_poule');
 };
 
