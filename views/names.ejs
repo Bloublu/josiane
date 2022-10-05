@@ -20,14 +20,21 @@
         <h2>saisir un nom </h2>
     </div>
     <div>
-        <form action="/names" method="post">
+        <form action="ajoutPoule" method="post" >
             <div>
-                <label>Votre idee de nom pour une poule ou un coq</label><br>
+                <label>Votre idee de nom pour une POULE</label><br>
                 <input type="text" name="nomPouleCoq" placeholder="nom Poule & Coq"><br>
-                <label>Votre nom est pour une Poule (cocher pour oui)</label>
-                <input type="checkbox" name="Poule"><br>
-                <label>Votre nom est pour une Coq (cocher pour oui)</label>
-                <input type="checkbox" name="Coq"><br>
+                
+                <button type="submit">Valider</button>
+            </div>
+        </form>
+    </div>
+    <div>
+        <form action="ajoutCoq" method="post" >
+            <div>
+                <label>Votre idee de nom pour un COQ</label><br>
+                <input type="text" name="nomPouleCoq" placeholder="nom Poule & Coq"><br>
+                
                 <button type="submit">Valider</button>
             </div>
         </form>

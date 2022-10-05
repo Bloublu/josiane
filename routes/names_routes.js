@@ -4,7 +4,9 @@ const names_controller = require('../controllers/names_controller');
 
 router.get('/names', names_controller.names);
 
-router.post('/names', names_controller.ajoutNames);
+router.post('/ajoutPoule', names_controller.ajoutNamesPoule);
+
+router.post('/ajoutCoq', names_controller.ajoutNamesCoq);
 
 router.get('/names_poule', names_controller.names_poule);
 
