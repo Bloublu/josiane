@@ -10,5 +10,28 @@
 <%-include('partials/nav')%>
 <h1>Nom de poules</h1>
 <img src="images/jojo.png" alt="jojo" style="height: 200px; width:auto; ">
+<div>
+    <h2>saisir un nom </h2>
+</div>
+<div>
+    <form action="ajoutPoule" method="post" >
+        <div>
+            <label>Votre idee de nom pour une POULE</label><br>
+            <input type="text" name="nomPouleCoq" placeholder="nom Poule & Coq"><br>
+            
+            <button type="submit">Valider</button>
+        </div>
+    </form>
+</div>
+<div>
+    <h3> Nom pour une Poule</h3>
+    <div>
+        <ul>
+            <% nameP.forEach((P) => { %>
+                <li><%= P.nom %></li>
+             <% }); %> 
+        </ul> 
+    </div>
+</div>
 </body>
 </html>

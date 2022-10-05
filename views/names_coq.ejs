@@ -10,5 +10,29 @@
 <%-include('partials/nav')%>
 
     <img src="images/faviconJojo.png" alt="faviconJojo" style="height: 100px; width:auto;">
+
+    <div>
+        <h2>saisir un nom </h2>
+    </div>
+    <div>
+        <form action="ajoutCoq" method="post" >
+            <div>
+                <label>Votre idee de nom pour un COQ</label><br>
+                <input type="text" name="nomPouleCoq" placeholder="nom Poule & Coq"><br>
+                
+                <button type="submit">Valider</button>
+            </div>
+        </form>
+    </div>
+    <div>
+        <h4> Nom pour un COQ</h4>
+        <div>
+            <ul>
+                <% nameC.forEach((C) => { %>
+                    <li><%= C.nom %></li>
+                 <% }); %> 
+            </ul> 
+        </div>
+    </div>
 </body>
 </html>

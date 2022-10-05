@@ -5,12 +5,15 @@ const nameC = require('../models/nameCoq_models');
 
 
 const names = (req, res, next) =>{
+    //connection BDD
     req.getConnection(async (err, connection) =>{
         if (err) {
             return next(err);
-        }     
+        } 
+        // on recupere le donnees de la BDD pour la tables nompoules et nomcoqs    
         await connection.query('SELECT nom FROM nompoules ORDER BY RAND() LIMIT 10', [], (error, nameP) => {
             connection.query('SELECT nom FROM nomcoqs ORDER BY RAND() LIMIT 10', [], (error, nameC) => {
+                // envoie des listes de nom a la view
                 try{     
                      res.render('names', {
                         nameP: nameP,
@@ -43,7 +46,7 @@ const ajoutNamesPoule = (req, res, next) => {
             //requete insert pour le formulaire poule
             const sql = "INSERT INTO nompoules (nom) VALUES (?)"
             await connection.query(sql, resultFormMaj, (error, row, fields) => {
-                res.redirect('names');                            
+                res.redirect('names_poule');                            
             });
 
         }catch (error) {
@@ -71,7 +74,7 @@ const ajoutNamesCoq = (req, res, next) => {
             //requete insert pour le formulaire poule
             const sql = "INSERT INTO nomcoqs (nom) VALUES (?)"
             await connection.query(sql, resultFormMaj, (error, row, fields) => {        
-                res.redirect('names');                                     
+                res.redirect('names_coq');                                     
             });
 
         }catch (error) {
@@ -82,11 +85,45 @@ const ajoutNamesCoq = (req, res, next) => {
 };
 
 const names_poule = async (req, res) => {
-    res.render('names_poule');
+    //connection BDD
+    req.getConnection(async (err, connection) =>{
+        if (err) {
+            return next(err);
+        }     
+        // on recupere le donnees de la BDD pour la tables nompoules et nomcoqs    
+        await connection.query('SELECT nom FROM nompoules', [], (error, nameP) => {
+                // envoie de la liste de nom a la view
+                try{     
+                     res.render('names_poule', {
+                        nameP: nameP,
+                        errors: req.flash('error')
+                    });                       
+                }catch(error){
+                    console.log(error);
+                }
+        });    
+    });
 };
 
 const names_coq = (req, res) =>{
-    res.render('names_coq');
+        //connection BDD
+        req.getConnection(async (err, connection) =>{
+            if (err) {
+                return next(err);
+            }     
+            // on recupere le donnees de la BDD pour la tables nomcoqs    
+            await connection.query('SELECT nom FROM nomcoqs', [], (error, nameC) => {
+                    // envoie de la liste de nom a la view
+                    try{     
+                         res.render('names_coq', {
+                            nameC: nameC,
+                            errors: req.flash('error')
+                        });                       
+                    }catch(error){
+                        console.log(error);
+                    }
+            });    
+        });
 };
 
 
@@ -96,5 +133,5 @@ module.exports = {
     ajoutNamesPoule,
     ajoutNamesCoq,
     names_poule,
-    names_coq
+    names_coq,
 };
