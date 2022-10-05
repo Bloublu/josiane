@@ -47,6 +47,8 @@ app.use(flash()); // permet d'envoie des message a la view via controllers, marc
 //routes
 app.use('/', presentation_routes);
 app.use('/', names_routes);
+app.use('/ajoutPoule',names_routes);
+app.use('/ajoutCoq',names_routes);
 app.use('/', astuce_routes);
 app.use('/', partage_routes);
 app.use('/', recette_routes);
