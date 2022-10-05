@@ -9,8 +9,8 @@ const names = (req, res, next) =>{
         if (err) {
             return next(err);
         }     
-        await connection.query('SELECT nom FROM nompoules', [], (error, nameP) => {
-            connection.query('SELECT nom FROM nomcoqs', [], (error, nameC) => {
+        await connection.query('SELECT nom FROM nompoules ORDER BY RAND() LIMIT 10', [], (error, nameP) => {
+            connection.query('SELECT nom FROM nomcoqs ORDER BY RAND() LIMIT 10', [], (error, nameC) => {
                 try{     
                      res.render('names', {
                         nameP: nameP,
@@ -32,19 +32,20 @@ const ajoutNamesPoule = (req, res, next) => {
         if (err) {
             return next(err);
         }
+
         try {
             // on recupere le donnees du formulaire
             const resultForm = req.body;
             // on mets en minuscule puis en majuscule la premiere du champs nom du formulaire
             const resultFormMin = resultForm.nomPouleCoq.toLowerCase();
             const resultFormMaj = resultFormMin[0].toUpperCase() + resultFormMin.slice(1);
-            //
+
+            //requete insert pour le formulaire poule
             const sql = "INSERT INTO nompoules (nom) VALUES (?)"
             await connection.query(sql, resultFormMaj, (error, row, fields) => {
-                            
-                res.redirect('names');                       
-                    
+                res.redirect('names');                            
             });
+
         }catch (error) {
             req.flash('error', 'merci de remplir le champs nom POULE');
             res.redirect('names');
@@ -59,19 +60,20 @@ const ajoutNamesCoq = (req, res, next) => {
          if (err) {
              return next(err);
          }
+
          try {
             // on recupere le donnees du formulaire
             const resultForm = req.body;
             // on mets en minuscule puis en majuscule la premiere du champs nom du formulaire
             const resultFormMin = resultForm.nomPouleCoq.toLowerCase();
             const resultFormMaj = resultFormMin[0].toUpperCase() + resultFormMin.slice(1);
-        
+
+            //requete insert pour le formulaire poule
             const sql = "INSERT INTO nomcoqs (nom) VALUES (?)"
-            await connection.query(sql, resultFormMaj, (error, row, fields) => {
-                    
-            res.redirect('names');                      
-                
+            await connection.query(sql, resultFormMaj, (error, row, fields) => {        
+                res.redirect('names');                                     
             });
+
         }catch (error) {
             req.flash('error', 'merci de remplir le champs nom COQ');
             res.redirect('names');
