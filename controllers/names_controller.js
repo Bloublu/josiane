@@ -42,13 +42,11 @@ const ajoutNamesPoule = (req, res, next) => {
             // on mets en minuscule puis en majuscule la premiere du champs nom du formulaire
             const resultFormMin = resultForm.nomPouleCoq.toLowerCase();
             const resultFormMaj = resultFormMin[0].toUpperCase() + resultFormMin.slice(1);
-
             //requete insert pour le formulaire poule
             const sql = "INSERT INTO nompoules (nom) VALUES (?)"
             await connection.query(sql, resultFormMaj, (error, row, fields) => {
                 res.redirect('names_poule');                            
             });
-
         }catch (error) {
             req.flash('error', 'merci de remplir le champs nom POULE');
             res.redirect('names');
@@ -125,7 +123,6 @@ const names_coq = (req, res) =>{
             });    
         });
 };
-
 
 
 module.exports = {

@@ -59,7 +59,7 @@ app.use((req, res) => {
    res.render('erreur404'); 
 });
 
-app.listen(port, () => {
+app.listen(process.env.PORT || port, () => {
     console.log(`Application lancée sur le port ${port}`);
 });
 
