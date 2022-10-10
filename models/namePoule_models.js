@@ -6,3 +6,5 @@ const namePouleSchema = new Schema({
     nom : { tpe : "string", default : null, nullable : false },
     aime : { type : "Boolean", nullable : true}
 });
+
+module.exports = mysql.format('namePoule', namePouleSchema);

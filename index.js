@@ -10,6 +10,7 @@ const astuce_routes = require('./routes/astuce_routes');
 const partage_routes = require('./routes/partage_routes');
 const recette_routes = require('./routes/recette_routes');
 const games_routes = require('./routes/games_routes');
+const user_routes = require('./routes/user_routes');
 
 //connection Bdd
 const mysql = require('mysql'), // node-mysql module
@@ -53,6 +54,8 @@ app.use('/', astuce_routes);
 app.use('/', partage_routes);
 app.use('/', recette_routes);
 app.use('/', games_routes);
+app.use('/',user_routes);
+app.use('/signup',user_routes);
 
 app.use((req, res) => {
    res.status(404);

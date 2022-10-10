@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('partials/head')%>
+    <title>Josiane</title>
+    <link rel="stylesheet" href="./css/game_style.css">  
+</head>
+<body>
+<%-include('partials/header')%>
+<%-include('partials/nav')%>
+
+<div><h2>Création de compte : </h2></div>
+<div>
+    <form action="signup" method="post" >
+        <div>
+            <label>creation compte utilisateur</label><br>
+            <input type="email" name="email" placeholder="saisir un email valide">
+            <input type="text" name="pseudo" placeholder="saisir votre pseudo"><br>
+            <input type="password" name="password" placeholder="saisir votre mot de passe">
+            
+            <button type="submit">Valider</button>
+        </div>
+    </form>
+</div>
+
+</body>
+</html>
