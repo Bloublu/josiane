@@ -56,13 +56,14 @@ app.use('/', recette_routes);
 app.use('/', games_routes);
 app.use('/',user_routes);
 app.use('/signup',user_routes);
+app.use('/login',user_routes);
 
 app.use((req, res) => {
    res.status(404);
    res.render('erreur404'); 
 });
 
-app.listen(process.env.PORT || port, () => {
+app.listen(port, () => {
     console.log(`Application lancée sur le port ${port}`);
 });
 
