@@ -18,7 +18,8 @@ const names = (req, res, next) =>{
                      res.render('names', {
                         nameP: nameP,
                         nameC: nameC,
-                        errors: req.flash('error')
+                        errors: req.flash('error'),
+                        session: req.session,
                     });                       
                 }catch(error){
                     console.log(error);
@@ -94,7 +95,8 @@ const names_poule = async (req, res) => {
                 try{     
                      res.render('names_poule', {
                         nameP: nameP,
-                        errors: req.flash('error')
+                        errors: req.flash('error'),
+                        session: req.session,
                     });                       
                 }catch(error){
                     console.log(error);
@@ -115,7 +117,8 @@ const names_coq = (req, res) =>{
                     try{     
                          res.render('names_coq', {
                             nameC: nameC,
-                            errors: req.flash('error')
+                            errors: req.flash('error'),
+                            session: req.session,
                         });                       
                     }catch(error){
                         console.log(error);

@@ -3,7 +3,7 @@ const router = express.Router();
 
 
 router.get('/astuce', (req, res) =>{
-    res.render('travaux');
+    res.render('travaux', { session: req.session });
 });
 
 module.exports = router;

@@ -8,5 +8,10 @@
             <div class="separateur"> / </div>
             <a href="/signup">s'inscrire</a>
         </div>
+        <div class="header_user" style="color: red;">
+            <% if (session.User) {%>
+                <p>Salut </p> <%= session.User.pseudo %>
+            <% } %> 
+        </div>
     </div>
 </header>
