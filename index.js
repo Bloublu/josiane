@@ -57,6 +57,7 @@ app.use('/', games_routes);
 app.use('/',user_routes);
 app.use('/signup',user_routes);
 app.use('/login',user_routes);
+app.use('/disconnect',user_routes);
 
 app.use((req, res) => {
    res.status(404);

@@ -119,9 +119,20 @@ const connect = (req, res, next) => {
     } 
 }
 
+const disconnect = (req, res, next) => {
+    try{     
+        // on enregistre le user dans la session
+        req.session.destroy();
+        res.redirect('/');                      
+   }catch(error){
+       console.log(error);
+   }
+    
+}
 module.exports = {
     sign,
     login,
     signup,
-    connect
+    connect,
+    disconnect
 }

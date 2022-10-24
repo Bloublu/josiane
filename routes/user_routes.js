@@ -6,5 +6,6 @@ router.get('/signup', user_controller.sign);
 router.post('/signup', user_controller.signup);
 router.get('/login', user_controller.login);
 router.post('/login', user_controller.connect);
+router.get('/disconnect', user_controller.disconnect);
 
 module.exports = router;

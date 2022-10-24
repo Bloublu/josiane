@@ -4,13 +4,18 @@
         <div class="header_title"><h1>Chez Josiane</h1></div>
         <div class="header_ahref">
             <!-- faire condition pour afficher les bons liens en fonction si l'utilisateur est connecté ou pas (ex deconnexion)-->
-            <a href="/login">connexion</a>
+            <% if (session.User) {%>
+                <a href="/disconnect">Se Deconnecter</a>
+            <% } %>
+            <% if (!session.User) {%>
+                <a href="/login">connexion</a>
             <div class="separateur"> / </div>
             <a href="/signup">s'inscrire</a>
+            <% } %>
         </div>
         <div class="header_user" style="color: red;">
             <% if (session.User) {%>
-                <p>Salut </p> <%= session.User.pseudo %>
+                <p>Bienvenue </p> <%= session.User.pseudo %>
             <% } %> 
         </div>
     </div>
