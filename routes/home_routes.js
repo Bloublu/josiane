@@ -1,11 +1,11 @@
 const express = require('express');
 const router = express.Router();
 
-
+// route home 
 router.get('/', (req, res) => {
     res.render('home', { 
         session: req.session,
-        errors: req.flash('email'),
+        infos: req.flash('info'),
     });
 });
 

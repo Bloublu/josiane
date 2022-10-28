@@ -5,7 +5,7 @@ const router = express.Router();
 router.get('/astuce', (req, res) =>{
     res.render('travaux', { 
         session: req.session,
-        errors: req.flash('email'),
+        infos: req.flash('infos'),
      });
 });
 

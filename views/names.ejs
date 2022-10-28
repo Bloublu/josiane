@@ -9,36 +9,9 @@
 <%-include('partials/header')%>
 <%-include('partials/nav')%>
 
-    <div>
-        <% if( errors.length) { %> 
-            <h4 style="color: red;"> <%= errors %>   </h4>    
-        <% } %> 
-    </div>
 
     <h1>PAGE NAMES</h1>
-    <div>
-        <h2>saisir un nom </h2>
-    </div>
-    <div>
-        <form action="ajoutPoule" method="post" >
-            <div>
-                <label>Votre idee de nom pour une POULE</label><br>
-                <input type="text" name="nomPouleCoq" placeholder="nom Poule & Coq"><br>
-                
-                <button type="submit">Valider</button>
-            </div>
-        </form>
-    </div>
-    <div>
-        <form action="ajoutCoq" method="post" >
-            <div>
-                <label>Votre idee de nom pour un COQ</label><br>
-                <input type="text" name="nomPouleCoq" placeholder="nom Poule & Coq"><br>
-                
-                <button type="submit">Valider</button>
-            </div>
-        </form>
-    </div>
+   
     <div>
         <h4> 10 idées de nom aléatoire pour une Poule</h4>
         <div>

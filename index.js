@@ -5,7 +5,7 @@ const path = require('path');
 require("dotenv").config();
 const session = require('express-session');
 const flash = require('connect-flash')
-const presentation_routes = require('./routes/presentation_routes');
+const home_routes = require('./routes/home_routes');
 const names_routes = require('./routes/names_routes');
 const astuce_routes = require('./routes/astuce_routes');
 const partage_routes = require('./routes/partage_routes');
@@ -47,7 +47,7 @@ app.use(session({
 app.use(flash()); // permet d'envoie des message a la view via controllers, marche avec les sessions
 
 //routes
-app.use('/', presentation_routes);
+app.use('/', home_routes);
 app.use('/', names_routes);
 app.use('/ajoutPoule',names_routes);
 app.use('/ajoutCoq',names_routes);
@@ -61,6 +61,7 @@ app.use('/login',user_routes);
 app.use('/disconnect',user_routes);
 app.use('/forgetPassword',user_routes);
 app.use('/pp',user_routes);
+
 
 app.use((req, res) => {
    res.status(404);

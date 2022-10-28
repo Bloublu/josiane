@@ -1,10 +1,20 @@
-const mysql = require('mysql');
-const Schema = mysql.createConnection;
 
-const namePouleSchema = new Schema({
-    id : { type: "_internal", bomAware: true},
-    nom : { tpe : "string", default : null, nullable : false },
-    aime : { type : "Boolean", nullable : true}
-});
+class Poule {
 
-module.exports = mysql.format('namePoule', namePouleSchema);
+    constructor({id, nom, aime}) {
+        this.id = id;
+        this.nom = nom;
+        this.aime = aime;
+        
+    }
+getId(id){ return this.id; }
+ getEmail(nom) { return this.nom; }
+ getPseudo(aime) { return this.aime; }
+ 
+ 
+ setId(id) { this.id = id; }
+ setEmail(nom) { this.nom = nom; }
+ setPseudo(aime) { this.aime = aime; }
+
+}
+module.exports = Poule;

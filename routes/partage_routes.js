@@ -4,7 +4,7 @@ const router = express.Router();
 router.get('/partage', (req, res) =>{
     res.render('partage',{ 
         session: req.session,
-        errors: req.flash('email'),
+        infos: req.flash('infos'),
      });
 });
 

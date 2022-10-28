@@ -3,7 +3,7 @@ const connection = require('express-myconnection');
 const nameP = require('../models/namePoule_models');
 const nameC = require('../models/nameCoq_models');
 
-
+// route names all
 const names = (req, res, next) =>{
     //connection BDD
     req.getConnection(async (err, connection) =>{
@@ -18,6 +18,7 @@ const names = (req, res, next) =>{
                      res.render('names', {
                         nameP: nameP,
                         nameC: nameC,
+                        infos: req.flash('infos'),
                         errors: req.flash('error'),
                         session: req.session,
                     });                       
@@ -29,8 +30,32 @@ const names = (req, res, next) =>{
     }); 
 };
 
+// route names Poules GET
+const names_poule = async (req, res) => {
+    //connection BDD
+    req.getConnection(async (err, connection) =>{
+        if (err) {
+            return next(err);
+        }     
+        // on recupere le donnees de la BDD pour la tables nompoules et nomcoqs    
+        await connection.query('SELECT nom FROM nompoules', [], (error, nameP) => {
+                // envoie de la liste de nom a la view
+                try{     
+                     res.render('names_poule', {
+                        nameP: nameP,
+                        infos: req.flash('infos'),
+                        errors: req.flash('error'),
+                        session: req.session,
+                    });                       
+                }catch(error){
+                    console.log(error);
+                }
+        });    
+    });
+};
+
+// route names Poules POST
 const ajoutNamesPoule = (req, res, next) => {
-        
     //connection bdd
     req.getConnection( async(err, connection) =>{
         if (err) {
@@ -50,13 +75,37 @@ const ajoutNamesPoule = (req, res, next) => {
             });
         }catch (error) {
             req.flash('error', 'merci de remplir le champs nom POULE');
-            res.redirect('names');
+            res.redirect('names_poule');
         }
     });
 };
 
+// route names Coq GET
+const names_coq = (req, res) =>{
+    //connection BDD
+    req.getConnection(async (err, connection) =>{
+        if (err) {
+            return next(err);
+        }     
+        // on recupere le donnees de la BDD pour la tables nomcoqs    
+        await connection.query('SELECT nom FROM nomcoqs', [], (error, nameC) => {
+            // envoie de la liste de nom a la view
+            try{     
+                res.render('names_coq', {
+                    nameC: nameC,
+                    infos: req.flash('infos'),
+                    errors: req.flash('error'),
+                    session: req.session,
+                });                       
+            }catch(error){
+                console.log(error);
+            }
+        });    
+    });
+};
+
+// route names Coq POST
 const ajoutNamesCoq = (req, res, next) => {
-        
     //connection bdd
      req.getConnection(async (err, connection) =>{
          if (err) {
@@ -78,60 +127,16 @@ const ajoutNamesCoq = (req, res, next) => {
 
         }catch (error) {
             req.flash('error', 'merci de remplir le champs nom COQ');
-            res.redirect('names');
+            res.redirect('names_coq');
         }
     });
-};
-
-const names_poule = async (req, res) => {
-    //connection BDD
-    req.getConnection(async (err, connection) =>{
-        if (err) {
-            return next(err);
-        }     
-        // on recupere le donnees de la BDD pour la tables nompoules et nomcoqs    
-        await connection.query('SELECT nom FROM nompoules', [], (error, nameP) => {
-                // envoie de la liste de nom a la view
-                try{     
-                     res.render('names_poule', {
-                        nameP: nameP,
-                        errors: req.flash('error'),
-                        session: req.session,
-                    });                       
-                }catch(error){
-                    console.log(error);
-                }
-        });    
-    });
-};
-
-const names_coq = (req, res) =>{
-        //connection BDD
-        req.getConnection(async (err, connection) =>{
-            if (err) {
-                return next(err);
-            }     
-            // on recupere le donnees de la BDD pour la tables nomcoqs    
-            await connection.query('SELECT nom FROM nomcoqs', [], (error, nameC) => {
-                    // envoie de la liste de nom a la view
-                    try{     
-                         res.render('names_coq', {
-                            nameC: nameC,
-                            errors: req.flash('error'),
-                            session: req.session,
-                        });                       
-                    }catch(error){
-                        console.log(error);
-                    }
-            });    
-        });
 };
 
 
 module.exports = {
     names,
-    ajoutNamesPoule,
-    ajoutNamesCoq,
     names_poule,
+    ajoutNamesPoule,
     names_coq,
+    ajoutNamesCoq,
 };

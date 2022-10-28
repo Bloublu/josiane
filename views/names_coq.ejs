@@ -15,6 +15,11 @@
         <h2>saisir un nom </h2>
     </div>
     <div>
+        <% if( errors.length) { %> 
+            <h4 style="color: red;"> <%= errors %>   </h4>    
+        <% } %> 
+    </div>
+    <div>
         <form action="ajoutCoq" method="post" >
             <div>
                 <label>Votre idee de nom pour un COQ</label><br>
