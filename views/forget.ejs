@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('partials/head') %>
+    <title>Josiane</title>
+    <link rel="stylesheet" href="./css/home_style.css">  
+</head>
+<body>
+<%-include('partials/header')%>
+<%-include('partials/nav')%>
+    <div>
+        <% if( errors.length) { %> 
+            <h4 style="color: red;"> <%= errors %>   </h4>    
+        <% } %> 
+    </div>
+    <div>
+        <h1>Mot de passe oublié </h1>
+    </div>
+    <div>
+        <p>Si vous avez oublié votre mot de passe, merci de saisir votre adresse email : </p>
+    </div>
+        <form action="/forgetPassword" method="post" >
+        <label>Votre adresse email</label><br>
+        <input type="email" name="email" placeholder="saisir votre email"><br>
+        <button type="submit">Valider</button>
+        </form>
+    </div>
+</body>
+</html>

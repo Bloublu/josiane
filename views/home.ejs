@@ -8,6 +8,11 @@
 <body>
 <%-include('partials/header')%>
 <%-include('partials/nav')%>
+<div>
+    <% if( errors.length) { %> 
+        <h4 style="color: red;"> <%= errors %>   </h4>    
+    <% } %> 
+</div>
     <div>
         <img src="./images/chickenOrEgg.jpg" alt="chickenOrEgg">
     </div>

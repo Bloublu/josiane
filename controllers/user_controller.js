@@ -63,7 +63,7 @@ const signup = (req, res, next) => {
                 await connection.query(sql, user, (error, row, fields) => {
                     res.redirect('/');
                 });           
-        } ) ;
+            });
         }
     }catch(error){
         console.log(error);
@@ -88,7 +88,7 @@ const connect = (req, res, next) => {
                 const mailUser = req.body.email;
                 const sql = "SELECT email, pseudo, password FROM users WHERE email = ?";
                 await connection.query(sql, mailUser, async (err, result) => {             
-                    if (err){
+                    if (err || result[0] === undefined){
                         req.flash('error', 'Paire login/password incorrect.');
                         res.redirect('login');
                     }else {

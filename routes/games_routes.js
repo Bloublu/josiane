@@ -2,15 +2,31 @@ const express = require('express');
 const router = express.Router();
 
 router.get('/games', (req, res) => {
-    res.render('games', { session: req.session });
+    res.render('games', { 
+        session: req.session,
+        errors: req.flash('email'),
+    });
 });
 
 router.get('/game_eggs', (req, res) => {
-    res.render('game_eggs', { session: req.session });
+    res.render('game_eggs', { 
+        session: req.session,
+        errors: req.flash('email'),
+     });
 });
 
-router.get('/game_chifoumi', (req, res) => {
-    res.render('game_chifoumi', { session: req.session });
+router.get('/game_goChickenGo', (req, res) => {
+    res.render('game_goChickenGo', { 
+        session: req.session,
+        errors: req.flash('email'),
+    });
+});
+
+router.get('/game_eggyCar', (req, res) => {
+    res.render('game_eggyCar', { 
+        session: req.session,
+        errors: req.flash('email'),
+    });
 });
 
 

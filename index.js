@@ -2,6 +2,7 @@
 // import 
 const express = require('express');
 const path = require('path');
+require("dotenv").config();
 const session = require('express-session');
 const flash = require('connect-flash')
 const presentation_routes = require('./routes/presentation_routes');
@@ -19,7 +20,7 @@ const mysql = require('mysql'), // node-mysql module
         host : 'localhost',
         user : 'root',
         password : '',
-        database : 'josiane'
+        database : process.env.bdd
     };
 
 // instance variables
@@ -58,6 +59,8 @@ app.use('/',user_routes);
 app.use('/signup',user_routes);
 app.use('/login',user_routes);
 app.use('/disconnect',user_routes);
+app.use('/forgetPassword',user_routes);
+app.use('/pp',user_routes);
 
 app.use((req, res) => {
    res.status(404);

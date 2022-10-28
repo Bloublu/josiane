@@ -13,10 +13,15 @@
             <a href="/signup">s'inscrire</a>
             <% } %>
         </div>
-        <div class="header_user" style="color: red;">
+        <div class="header_user">
             <% if (session.User) {%>
-                <p>Bienvenue </p> <%= session.User.pseudo %>
+                <p>Bienvenue <strong><%= session.User.pseudo %> </strong> </p>
             <% } %> 
         </div>
+        <!-- <div class="message">
+            <% if( errors.length) { %> 
+                <h4 style="color: red;"> <%= errors %>   </h4>    
+            <% } %> 
+        </div> -->
     </div>
 </header>

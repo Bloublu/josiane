@@ -5,13 +5,12 @@ body {
 .gameEggs {
     display: block;
     text-align: center;
-    
-    
 }
+
 iframe {
     height: 600px;
     width: 85%;
     box-shadow: 15px 10px 5px #fffcb9e8;
     margin: 10px;
-    margin-top: 50px;
+    margin-top: 50px;  
 }

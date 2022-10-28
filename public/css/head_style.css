@@ -63,6 +63,16 @@
   color: #fff;
 }
 
+.header_user{
+  grid-column: 8 / 11;
+    grid-row: 2;
+    align-self: flex-start;
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.5em;
+    color: #fffcb9e8;
+}
+
 :root{
     --hauteur-menu: 60px;
   }
