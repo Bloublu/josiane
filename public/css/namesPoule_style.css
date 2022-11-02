@@ -1,0 +1,22 @@
+
+
+.listPoule {
+    grid-row: 3/6 ;
+    grid-column: 3/8;
+    column-count: 3;
+    width: 100%;
+    height: auto;
+    margin-top: 25px;
+    margin-bottom: 25px;
+    text-align: center;
+    font-size: x-large;
+}
+.listPoule ul {
+    list-style-type: none;
+    margin-top: 20px;
+    font-weight: bold;
+}
+
+.listPoule ul li {
+    margin: 10px;
+}

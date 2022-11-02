@@ -4,33 +4,48 @@
     <%-include('partials/head')%>
     <title>Josiane</title>
     <link rel="stylesheet" href="./css/names_style.css">  
+    <link rel="stylesheet" href="./css/namesHome_style.css">  
 </head>
 <body>
 <%-include('partials/header')%>
 <%-include('partials/nav')%>
 
-
-    <h1>PAGE NAMES</h1>
-   
-    <div>
-        <h4> 10 idées de nom aléatoire pour une Poule</h4>
-        <div>
-            <ul>
-                <% nameP.forEach((P) => { %>
-                    <li><%= P.nom %></li>
-                 <% }); %> 
-            </ul> 
+    <main class="pNames">
+        <h1>10 Noms Aléatoire</h1>
+        <div class="lienBtn">
+            <form>
+                <button type="submit" formaction="/names" class="btn">
+                     Nom Poule & Coq 
+                     <img style="float: left; height: 50px; width: auto; padding-left: 10px;" src="../images/jojo.png" alt="poulette">
+                </button>
+                <button type="submit" formaction="/names_poule" class="btn"> Nom pour une Poule </button>
+                <button type="submit" formaction="/names_coq" class="btn"> Nom pour un Coq </button>
+            </form>
         </div>
-    </div>
-    <div>
-        <h4> 10 idées de nom aléatoire pour une Coq</h4>
-        <div>
-            <ul>
-                <% nameC.forEach((P) => { %>
-                    <li><%= P.nom %></li>
-                 <% }); %> 
-            </ul> 
+        <div class="nomPoule">
+            <h4> pour une Poule</h4>
+            <div>
+                <ul>
+                    <% nameP.forEach((P) => { %>
+                        <li><%= P.nom %></li>
+                    <% }); %> 
+                </ul> 
+            </div>
         </div>
-    </div>
+        <img class="coqMarco" src="../images/coqMarco.png" alt="coqMarco">
+        <div class="nomCoq">
+            <h4> pour un Coq</h4>
+            <div>
+                <ul>
+                    <% nameC.forEach((P) => { %>
+                        <li><%= P.nom %></li>
+                    <% }); %> 
+                </ul> 
+            </div>
+        </div>
+    </main>
+    <footer style="background-color: green;">
+        <p>ceci est mon footer</p>
+    </footer>
 </body>
 </html>

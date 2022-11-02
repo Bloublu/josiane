@@ -3,34 +3,44 @@
 <head>
     <%-include('partials/head')%>
     <title>Josiane</title>
-    <link rel="stylesheet" href="./css/names_style.css">  
+    <link rel="stylesheet" href="./css/names_style.css">
+    <link rel="stylesheet" href="./css/namesCoq_style.css">    
 </head>
 <body>
 <%-include('partials/header')%>
 <%-include('partials/nav')%>
 
-    <img src="images/faviconJojo.png" alt="faviconJojo" style="height: 100px; width:auto;">
+<main class="pNames">
 
-    <div>
-        <h2>saisir un nom </h2>
+    <div class="lienBtn">
+        <form>
+            <button type="submit" formaction="/names" class="btn"> Nom Poule & Coq </button>
+            <button type="submit" formaction="/names_poule" class="btn"> Nom pour une Poule </button>
+            <button type="submit" formaction="/names_coq" class="btn">
+                  Nom pour un Coq 
+                 <img style="float: left; height: 50px; width: auto; padding-left: 10px;" src="../images/jojo.png" alt="poulette">
+            </button>
+        </form>
     </div>
-    <div>
-        <% if( errors.length) { %> 
-            <h4 style="color: red;"> <%= errors %>   </h4>    
-        <% } %> 
-    </div>
-    <div>
+
+    <h1>Nom pour un Coq</h1>
+
+    <div class="formulaire">
+        <div>
+            <% if( errors.length) { %> 
+                <h4 style="color: red;"> <%= errors %>   </h4>    
+            <% } %> 
+        </div>
         <form action="ajoutCoq" method="post" >
             <div>
-                <label>Votre idee de nom pour un COQ</label><br>
-                <input type="text" name="nomPouleCoq" placeholder="nom Poule & Coq"><br>
-                
+                <label>Votre idee de nom pour un COQ</label>
+                <input type="text" name="nomPouleCoq" placeholder="nom Coq">
                 <button type="submit">Valider</button>
             </div>
         </form>
     </div>
-    <div>
-        <h4> Nom pour un COQ</h4>
+
+    <div class="listCoq">
         <div>
             <ul>
                 <% nameC.forEach((C) => { %>
@@ -39,5 +49,10 @@
             </ul> 
         </div>
     </div>
+
+</main>
+<footer style="background-color: rgb(95, 88, 88); height: 150px;">
+    <p>ceci est mon footer</p>
+</footer>
 </body>
 </html>

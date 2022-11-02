@@ -36,6 +36,9 @@ ul li div a h3 {
     width: 350px;
     margin: 20px;
 }
+.Jeux ul {
+    list-style-type: none;
+}
 
 .Jeux {
     display: inline-block;
