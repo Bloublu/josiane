@@ -18,7 +18,7 @@
             <button type="submit" formaction="/names" class="btn"> Nom Poule & Coq </button>
             <button type="submit" formaction="/names_poule" class="btn"> 
                 Nom pour une Poule 
-                <img style="float: left; height: 50px; width: auto; padding-left: 10px;" src="../images/jojo.png" alt="poulette">
+                <img style="float: left; height: 30px; width: auto; padding-left: 10px;" src="../images/josiane.png" alt="poulette">
             </button>
             <button type="submit" formaction="/names_coq" class="btn"> Nom pour un Coq </button>
         </form>
@@ -29,7 +29,7 @@
     <div class="formulaire">
         <div>
             <% if( errors.length) { %> 
-                <h4 style="color: red;"> <%= errors %>   </h4>    
+                <h4 style="color: red; font-size: 1.5em;"> <%= errors %>   </h4>    
             <% } %> 
         </div>
         <form action="ajoutPoule" method="post" >

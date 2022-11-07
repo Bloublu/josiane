@@ -11,12 +11,11 @@
     background : linear-gradient(to bottom, #272525, 93%, #fffcb9e8); 
 }
 
-/* Param img jojo*/
+/* Param img josiane*/
 .header_img {
     grid-column: 1;
     grid-row-start: 1;
     grid-row-end: 3;
-    align-self: center;
 }
 
 .header_img img {
@@ -73,15 +72,6 @@
     color: #fffcb9e8;
 }
 
-.header_message{
-  grid-column: 4 / 9;
-  grid-row: 2;
-  align-self: flex-start;
-  margin-bottom: 15px;
-  text-align: center;
-  font-size: 1.5em;
-  color: #00FFFF;
-}
 
 :root{
     --hauteur-menu: 60px;

@@ -68,6 +68,15 @@ h1 {
     font-size: x-large;
 }
 
+.paulette {
+    grid-row: 2/2 ;
+    grid-column: 3/3;
+    justify-self: left;
+    height: 100px; 
+    width: auto;
+    z-index: 1;
+}
+
 .nomCoq {
     grid-row: 2/6 ;
     grid-column: 6/8;
@@ -97,9 +106,9 @@ h1 {
 
 .coqMarco {
     grid-row: 2/2 ;
-    grid-column: 7/8;
-    justify-self: end;
-    height: 100px; 
+    grid-column: 8/8;
+    justify-self: left;
+    height: 120px;
     width: auto;
     z-index: 1;
 }

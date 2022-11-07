@@ -4,7 +4,6 @@ const router = express.Router();
 router.get('/recette', (req, res) => {
     res.render('travaux',{ 
         session: req.session,
-        infos: req.flash('infos'), 
     });
 });
 
