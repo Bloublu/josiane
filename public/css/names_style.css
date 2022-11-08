@@ -23,6 +23,7 @@ h1 {
     grid-column: 1/2;
     grid-row: 1/4;
     align-self: flex-start;
+    
 }
 .btn {
     height: 120px;

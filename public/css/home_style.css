@@ -37,35 +37,35 @@ color: #00ff84;
     grid-column: 1/7 ;
     grid-row: 1;
     margin-left: 20px;
-    height: auto;
-    width: 95%; 
+    height: 100%;
+    width: auto; 
 }
 
-.erreur404{
+.erreurMess{
     grid-column: 6/10 ;
     grid-row: 1;
     margin-top: 100px;
     align-self: center;
 }
 
-.erreur404 h1 {
+.erreurMess h1 {
     font-size: 4em;
     
 
 }
 
-.erreur404 h2 {
+.erreurMess h2 {
     font-size: 2.5em;
 
 
 }
 
-.erreur404 p {
+.erreurMess p {
 
     font-size: 2em;
 }
 
-.erreur404 a {
+.erreurMess a {
 
     font-size: 3em;
     color: #debb0e;
