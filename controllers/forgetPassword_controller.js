@@ -63,7 +63,9 @@ const changePassword = (req, res, next) => {
           return next(err);
       }
       // Select user via id url + requete
-      const idUser = req.query.id || req.session.User.id;
+      
+      const idUser = req.query.id.replace(process.env.crip, '').replace(process.env.cripp, '') || req.session.User.id.replace(process.env.crip, '').replace(process.env.cripp, '');
+      
       const sql = "SELECT id, email, pseudo FROM users WHERE id = ?";
 
       // Passage REQUETE ASYNC et traitement selon result
@@ -150,8 +152,8 @@ async function envoiMail(result) {
   
   const pseudo = result.pseudo;
   const email = result.email;
-  const id = result.id;
-
+  const id = process.env.crip+result.id+process.env.cripp;
+  
   // param connect boite mail Bloublu
   let transporter = nodemailer.createTransport({
     host: "ssl0.ovh.net",
