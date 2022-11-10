@@ -173,11 +173,19 @@ async function envoiMail(result) {
     from: "'Bloublu - Josiane 🐔'<contact@bloublu.fr>", 
     to: email1, 
     subject: "Reinitialisation Mot de passe ✔", 
-    text: "Bonjour " + pseudo + ", vous recevez ce mail suite a votre demande de reinitialisation de mot de passe"
-    +"C'est pourquoi nous vous communiquons ce code afin de finaliser votre demande"
-    +"CODE : " + email, 
-    html: "Bonjour " + pseudo + ", vous recevez ce mail suite a votre demande de reinitialisation de mot de passe"
-    +"C'est pourquoi nous vous communiquons ce code afin de finaliser votre demande"
-    +"<b>CODE : "  + email + id +"</b> <a href='http://localhost:3000/changePassword?id="+id+"'> Bouton </a>", // html body
+
+    html: "<div style='text-align: center; border: 10px solid rgb(95, 88, 88); background-color: #fffcb9e8; padding: 15px; margin: 15px;'>"
+    +" Bonjour <strong>" + pseudo + "</strong><br><br>"
+    +"Suite à votre demande de nouveau mot passe, nous vous invitons à cliquer sur le lien ci-dessous :<br><br>"
+    +"<strong> <a href='http://localhost:3000/changePassword?id="+id+"'> Nouveau Mot de Passe </a></strong> <br><br>"
+    +"Si vous n’êtes pas à l'origine de cette action, veuillez nous contacter a l'adresse : <strong> contact@bloublu.fr </strong><br><br>"
+    +"À bientôt chez Josiane"
+    + ` <img src="cid:unique" width="40%" />  </div>`, // html body
+
+    attachments: [{
+      filename: 'josiane&vers.png',
+      path: 'public/images/josiane&vers.png',
+      cid: 'unique' 
+  }]
   });
 }
