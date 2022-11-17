@@ -1,5 +1,5 @@
 .names{
-    background-color: #f3f0c9e8;
+    background-color: #f3f0c9;
 }
 
 body {
@@ -75,7 +75,7 @@ h1 {
     justify-self: left;
     height: 100px; 
     width: auto;
-    z-index: 1;
+    z-index: 0;
 }
 
 .nomCoq {
@@ -111,7 +111,7 @@ h1 {
     justify-self: left;
     height: 120px;
     width: auto;
-    z-index: 1;
+    z-index: 0;
 }
 
 .formulaire {

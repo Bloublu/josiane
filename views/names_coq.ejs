@@ -28,7 +28,12 @@
     <div class="formulaire">
         <div>
             <% if( errors.length) { %> 
-                <h4 style="color: red; font-size: 1.5em;"> <%= errors %>   </h4>    
+                <h4 style="color: red; font-size: 1em;"> <%= errors %>   </h4>    
+            <% } %> 
+        </div>
+        <div>
+            <% if( infos.length) { %> 
+                <h4 style="color: #04d26e; font-size: 1em;"> <%= infos %>   </h4>    
             <% } %> 
         </div>
         <form action="ajoutCoq" method="post" >

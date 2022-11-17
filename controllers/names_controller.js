@@ -18,7 +18,7 @@ const names = (req, res, next) =>{
                      res.render('names', {
                         nameP: nameP,
                         nameC: nameC,
-                        infos: req.flash('infos'),
+                        infos: req.flash('info'),
                         errors: req.flash('error'),
                         session: req.session,
                     });                       
@@ -43,7 +43,7 @@ const names_poule = async (req, res) => {
                 try{     
                      res.render('names_poule', {
                         nameP: nameP,
-                        infos: req.flash('infos'),
+                        infos: req.flash('info'),
                         errors: req.flash('error'),
                         session: req.session,
                     });                       
@@ -63,19 +63,45 @@ const ajoutNamesPoule = (req, res, next) => {
         }
 
         try {
-            // on recupere le donnees du formulaire
-            const resultForm = req.body;
-            // on mets en minuscule puis en majuscule la premiere du champs nom du formulaire
-            const resultFormMin = resultForm.nomPouleCoq.toLowerCase();
-            const resultFormMaj = resultFormMin[0].toUpperCase() + resultFormMin.slice(1);
-            //requete insert pour le formulaire poule
-            const sql = "INSERT INTO nompoules (nom) VALUES (?)"
-            await connection.query(sql, resultFormMaj, (error, row, fields) => {
-                res.redirect('names_poule');                            
-            });
+            // on verifie que le champ nom // ne soit pas vide // ne soit pas supperieur a 15 carateres
+            if (req.body.nomPouleCoq == ''){
+                req.flash('error', 'merci de remplir le champs nom POULE');
+                res.redirect('names_poule');
+            } else if (req.body.nomPouleCoq.length > 15){
+                req.flash('error', 'Le nom ne doit pas depasser 15 caracteres');
+                res.redirect('names_poule');
+            }else {
+                // on recupere le donnees du formulaire
+                const resultForm = req.body;
+                // on mets en minuscule puis en majuscule la premiere du champs nom du formulaire
+                const resultFormMin = resultForm.nomPouleCoq.toLowerCase();
+                const resultFormMaj = resultFormMin[0].toUpperCase() + resultFormMin.slice(1);
+                
+                // on verifie que le nom saisi n'est pas deja en BDD / eviter les doublons / si non on INSERT
+                const sqlVerif = "SELECT nom FROM nompoules WHERE nom = ?";
+                await connection.query(sqlVerif,resultFormMaj, async (error, result) => {
+                    if (error){
+                        req.flash('error', 'Une erreur est survenue lors de l\'enregistrement de votre idée.');
+                        res.redirect('names_poule');
+                    }else if (result.length > 0) {
+                        req.flash('error', 'Ce nom existe déja, essaie encore.');
+                        res.redirect('names_poule');
+                    } else { 
+                        //requete insert pour le formulaire poule
+                        const sql = "INSERT INTO nompoules (nom) VALUES (?)"
+                        await connection.query(sql, resultFormMaj, (error, row, fields) => {
+                            if (error){
+                                req.flash('error', 'Une erreur est survenue lors de l\'enregistrement de votre idée.');
+                                res.redirect('names_poule');
+                            }
+                        });
+                        req.flash('info', 'merci pour votre participation');
+                        res.redirect('names_poule'); 
+                    }                        
+                });
+            }
         }catch (error) {
-            req.flash('error', 'merci de remplir le champs nom POULE');
-            res.redirect('names_poule');
+            console.log(error);
         }
     });
 };
@@ -93,7 +119,7 @@ const names_coq = (req, res) =>{
             try{     
                 res.render('names_coq', {
                     nameC: nameC,
-                    infos: req.flash('infos'),
+                    infos: req.flash('info'),
                     errors: req.flash('error'),
                     session: req.session,
                 });                       
@@ -113,21 +139,45 @@ const ajoutNamesCoq = (req, res, next) => {
          }
 
          try {
-            // on recupere le donnees du formulaire
-            const resultForm = req.body;
-            // on mets en minuscule puis en majuscule la premiere du champs nom du formulaire
-            const resultFormMin = resultForm.nomPouleCoq.toLowerCase();
-            const resultFormMaj = resultFormMin[0].toUpperCase() + resultFormMin.slice(1);
+            // on verifie que le champ nom // ne soit pas vide // ne soit pas supperieur a 15 carateres
+            if (req.body.nomPouleCoq == ''){
+                req.flash('error', 'merci de remplir le champs nom POULE');
+                res.redirect('names_coq');
+            } else if (req.body.nomPouleCoq.length > 15){
+                req.flash('error', 'Le nom ne doit pas depasser 15 caracteres');
+                res.redirect('names_coq');
+            }else {
+                // on recupere le donnees du formulaire
+                const resultForm = req.body;
+                // on mets en minuscule puis en majuscule la premiere du champs nom du formulaire
+                const resultFormMin = resultForm.nomPouleCoq.toLowerCase();
+                const resultFormMaj = resultFormMin[0].toUpperCase() + resultFormMin.slice(1);
 
-            //requete insert pour le formulaire poule
-            const sql = "INSERT INTO nomcoqs (nom) VALUES (?)"
-            await connection.query(sql, resultFormMaj, (error, row, fields) => {        
-                res.redirect('names_coq');                                     
-            });
-
+                // on verifie que le nom saisi n'est pas deja en BDD / eviter les doublons / si non on INSERT
+                const sqlVerif = "SELECT nom FROM nomcoqs WHERE nom = ?";
+                await connection.query(sqlVerif,resultFormMaj, async (error, result) => {
+                    if (error){
+                        req.flash('error', 'Une erreur est survenue lors de l\'enregistrement de votre idée.');
+                        res.redirect('names_coq');
+                    }else if (result.length > 0) {
+                        req.flash('error', 'Ce nom existe déja, essaie encore.');
+                        res.redirect('names_coq');
+                    } else { 
+                        //requete insert pour le formulaire poule
+                        const sql = "INSERT INTO nomcoqs (nom) VALUES (?)"
+                        await connection.query(sql, resultFormMaj, (error, row, fields) => {
+                            if (error){
+                                req.flash('error', 'Une erreur est survenue lors de l\'enregistrement de votre idée.');
+                                res.redirect('names_coq');
+                            }
+                        });
+                        req.flash('info', 'merci pour votre participation');
+                        res.redirect('names_coq'); 
+                    }                        
+                });
+            }
         }catch (error) {
-            req.flash('error', 'merci de remplir le champs nom COQ');
-            res.redirect('names_coq');
+            console.log(error);
         }
     });
 };

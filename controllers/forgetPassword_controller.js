@@ -62,10 +62,14 @@ const changePassword = (req, res, next) => {
       if (err) {
           return next(err);
       }
-      // Select user via id url + requete
-      
-      const idUser = req.query.id.replace(process.env.crip, '').replace(process.env.cripp, '') || req.session.User.id.replace(process.env.crip, '').replace(process.env.cripp, '');
-      
+      // recupere id user via query ou session + requete
+      let idUser;
+      if (req.query.id != null){
+        idUser = req.query.id.replace(process.env.crip, '').replace(process.env.cripp, '');
+      }else if (req.session.User.id != null){
+        idUser =  req.session.User.id;
+      }
+
       const sql = "SELECT id, email, pseudo FROM users WHERE id = ?";
 
       // Passage REQUETE ASYNC et traitement selon result
@@ -99,7 +103,7 @@ const changePassword = (req, res, next) => {
 // route update mot de passe (nouveau mot de passe) POST
 const updatePass =  (req, res, next) => {
   try{
-    // On verifie: champs pas vide / les 2 password sont identique / Champs password > a 4 caracteres
+    // On verifie: champs pas vide / les 2 password sont identique / Champs password < a 4 caracteres / Champs password > a 20 caracteres
     if (req.body.password === '' || req.body.confirmPassword === ''){
       req.flash('error', 'Merci de completer les 2 champs password.');
       res.redirect('changePassword');
@@ -108,6 +112,9 @@ const updatePass =  (req, res, next) => {
       res.redirect('changePassword');
     } else if (req.body.password.length < 4){
       req.flash('error', 'Le mot de passe doit contenir au moins 4 caracteres.');
+      res.redirect('changePassword');
+    } else if (req.body.password.length > 20){
+      req.flash('error', 'Le mot de passe doit contenir moins 20 caracteres.');
       res.redirect('changePassword');
     } else {
       //connection BDD
@@ -145,7 +152,7 @@ module.exports = {
 }
 
 // TODO retirer pour mettre email user 
-const email1 = 'bastien.benariac@gmail.com';
+//const email1 = 'bastien.benariac@gmail.com';
 
 // Functions envoie email appeler sur 'changePassword'
 async function envoiMail(result) {
@@ -171,7 +178,7 @@ async function envoiMail(result) {
   // Email envoyé avec destinataire et message
   await transporter.sendMail({
     from: "'Bloublu - Josiane 🐔'<contact@bloublu.fr>", 
-    to: email1, 
+    to: email, 
     subject: "Reinitialisation Mot de passe ✔", 
 
     html: "<div style='text-align: center; border: 10px solid rgb(95, 88, 88); background-color: #fffcb9e8; padding: 15px; margin: 15px;'>"

@@ -24,7 +24,7 @@ const sign = (req, res, next) => {
 //route creation user (s'inscrire) POST
 const signup = (req, res, next) => {
     try {
-        // On verifie: champs pas vide / les 2 password sont identique  / Champs password > a 4 caracteres
+        // On verifie: champs pas vide / les 2 password sont identique  / Champs password < a 4 caracteres / Champs password > a 20 caracteres
         if (req.body.email == '' || req.body.password == '') {
             req.flash('error', 'merci de remplir au moins les champs email et mot de passe.');
             res.redirect('signup');
@@ -33,6 +33,9 @@ const signup = (req, res, next) => {
             res.redirect('signup');
         } else if (req.body.password.length < 4){
             req.flash('error', 'Le mot de passe doit contenir au moins 4 caracteres.');
+            res.redirect('signup');
+        } else if (req.body.password.length > 20){
+            req.flash('error', 'Le mot de passe doit contenir moins 20 caracteres.');
             res.redirect('signup');
         } else {
             //connection BDD
