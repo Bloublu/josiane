@@ -63,12 +63,15 @@ const ajoutNamesPoule = (req, res, next) => {
         }
 
         try {
-            // on verifie que le champ nom // ne soit pas vide // ne soit pas supperieur a 15 carateres
+            // on verifie que le champ nom // ne soit pas vide // ne soit pas supperieur a 15 carateres // ne comporte pas de grossièretés.
             if (req.body.nomPouleCoq == ''){
                 req.flash('error', 'merci de remplir le champs nom POULE');
                 res.redirect('names_poule');
             } else if (req.body.nomPouleCoq.length > 15){
                 req.flash('error', 'Le nom ne doit pas depasser 15 caracteres');
+                res.redirect('names_poule');
+            }else if (process.env.grossier.indexOf(req.body.nomPouleCoq.toLowerCase()) != -1){
+                req.flash('error', 'Pas de grossièretés, svp !!');
                 res.redirect('names_poule');
             }else {
                 // on recupere le donnees du formulaire
@@ -139,12 +142,15 @@ const ajoutNamesCoq = (req, res, next) => {
          }
 
          try {
-            // on verifie que le champ nom // ne soit pas vide // ne soit pas supperieur a 15 carateres
+            // on verifie que le champ nom // ne soit pas vide // ne soit pas supperieur a 15 carateres // ne comporte pas de grossièretés.
             if (req.body.nomPouleCoq == ''){
                 req.flash('error', 'merci de remplir le champs nom POULE');
                 res.redirect('names_coq');
             } else if (req.body.nomPouleCoq.length > 15){
                 req.flash('error', 'Le nom ne doit pas depasser 15 caracteres');
+                res.redirect('names_coq');
+            }else if (process.env.grossier.indexOf(req.body.nomPouleCoq.toLowerCase()) != -1){
+                req.flash('error', 'Pas de grossièretés, svp !!');
                 res.redirect('names_coq');
             }else {
                 // on recupere le donnees du formulaire

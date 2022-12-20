@@ -21,8 +21,8 @@
 }
 
 .rico {
-    grid-row: 4/5;
-    grid-column: 0/2;
+    grid-row: 5/5;
+    grid-column: 1/1;
     align-self: flex-end;
     position: absolute;
     z-index: -1;
