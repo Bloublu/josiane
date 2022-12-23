@@ -12,12 +12,11 @@
 }
 .listCoq ul {
     list-style-type: none;
-    margin-top: 20px;
     font-weight: bold;
 }
 
 .listCoq ul li {
-    margin: 10px;
+    margin-bottom: 10px;
 }
 
 .rico {

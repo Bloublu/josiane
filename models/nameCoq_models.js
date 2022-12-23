@@ -1,20 +1,20 @@
 
 class Coq {
 
-    constructor({id, nom, aime}) {
+    constructor({id, nom, user_id}) {
         this.id = id;
         this.nom = nom;
-        this.aime = aime;
+        this.user_id = user_id;
         
     }
 getId(id){ return this.id; }
- getEmail(nom) { return this.nom; }
- getPseudo(aime) { return this.aime; }
+ getNom(nom) { return this.nom; }
+ getUser_id(user_id) { return this.user_id; }
  
  
  setId(id) { this.id = id; }
- setEmail(nom) { this.nom = nom; }
- setPseudo(aime) { this.aime = aime; }
+ setNom(nom) { this.nom = nom; }
+ setUser_id(user_id) { this.user_id = user_id; }
 
 }
 module.exports = Coq;

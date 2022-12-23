@@ -59,11 +59,14 @@ const signup = (req, res, next) => {
 
                 // On insert le user en BDD
                 const sql = " INSERT INTO users SET ? ";
-                await connection.query(sql, user, (error, row, fields) => {
+                await connection.query(sql, user, (error, result) => {
                     if (err){
                         req.flash('error', 'Une erreur est survenue, veuillez essayer a nouveau, auquel cas contactez le support.');
                         res.redirect('signup');
                     }else {
+                        // on ajoute l'id user dans la sesion
+                        req.session.User.id = result.insertId;
+                        
                         req.flash('info', 'Votre compte a bien été créé.');
                         res.redirect('/');
                     }
@@ -103,7 +106,7 @@ const connect = (req, res, next) => {
                 }
                 // Select user via email saisi + requete MYSQL
                 const mailUser = req.body.email;
-                const sql = "SELECT email, pseudo, password FROM users WHERE email = ?";
+                const sql = "SELECT id, email, pseudo, password FROM users WHERE email = ?";
 
                 // Passage REQUETE ASYNC et redirection selon result
                 await connection.query(sql, mailUser, async (err, result) => {             
@@ -113,6 +116,7 @@ const connect = (req, res, next) => {
                     }else {
                         // creation obj via result requete
                         const useer = new User ({
+                            id: result[0].id,
                             email: result[0].email,
                             pseudo: result[0].pseudo,
                             password: result[0].password,

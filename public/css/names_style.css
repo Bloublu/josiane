@@ -133,6 +133,29 @@ h1 {
     color: whitesmoke; 
 }
 
+.buttonInscription {
+    background-color: rgb(48, 47, 47);
+    box-shadow: 5px 5px 0 rgb(117, 114, 114);
+    color: white;
+    padding: 0.3em 1em;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+}
+.buttonInscription p {
+    display: inline-block;
+    padding-right: 2em;
+}
+.buttonInscription a {
+    color: white;
+    padding-right: 2em;
+    padding-left: 2em;
+    text-decoration: none;    
+}
+.buttonInscription a:hover {
+    background-color: rgb(117, 114, 114);
+}
+
 footer {
     grid-row: 7/7 ;
     grid-column: 1/9;

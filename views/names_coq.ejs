@@ -36,6 +36,7 @@
                 <h4 style="color: #04d26e; font-size: 1em;"> <%= infos %>   </h4>    
             <% } %> 
         </div>
+        <% if(session.User != null) { %> 
         <form action="ajoutCoq" method="post" >
             <div>
                 <label>Votre idee de nom pour un COQ</label>
@@ -43,6 +44,13 @@
                 <button type="submit">Valider</button>
             </div>
         </form>
+        <% } else { %> 
+            <div class="buttonInscription">
+                <p>Pour partager vos idées, vous devez : </p>
+                <a href="/signup">Vous inscrire</a>
+                <a href="/login">Vous connecter</a>
+            </div>
+        <% } %>
     </div>
 
     <div class="listCoq">
