@@ -1,6 +1,7 @@
 const { request } = require('express');
 const connection = require('express-myconnection');
-
+require("dotenv").config();
+const [grossier] = require('../public/js/config');
 
 // route names all
 const names = (req, res, next) =>{
@@ -67,17 +68,25 @@ const ajoutNamesPoule = (req, res, next) => {
                 req.flash('error', 'merci de vous inscrire pour partager vos idées.');
                 res.redirect('names_poule');
             }
-            // on verifie que le champ nom // ne soit pas vide // ne soit pas supperieur a 15 carateres // ne comporte pas de grossièretés.
+            // on verifie que le champ nom // ne soit pas vide // ne soit pas supperieur a 15 carateres.
             if (req.body.nomPouleCoq == ''){
                 req.flash('error', 'merci de remplir le champs nom POULE');
                 res.redirect('names_poule');
             } else if (req.body.nomPouleCoq.length > 15){
                 req.flash('error', 'Le nom ne doit pas depasser 15 caracteres');
                 res.redirect('names_poule');
-            }else if (process.env.grossier.indexOf(req.body.nomPouleCoq.toLowerCase()) != -1){
-                req.flash('error', 'Pas de grossièretés, svp !!');
-                res.redirect('names_poule');
             }else {
+                
+                // on verifie que le champ nom ne comporte pas de grossièretés.
+                for (let g of grossier) {
+                    if (g === req.body.nomPouleCoq){
+                        req.flash('error', 'Pas de grossièretés, svp !!');
+                        res.redirect('names_poule');
+                        return
+                    }
+                }
+    
+
                 // on recupere le donnees du formulaire
                 const resultForm = req.body;
                 // on recupere l'id de l'utilisateur
@@ -158,17 +167,24 @@ const ajoutNamesCoq = (req, res, next) => {
                 res.redirect('names_coq');
             }
 
-            // on verifie que le champ nom // ne soit pas vide // ne soit pas supperieur a 15 carateres // ne comporte pas de grossièretés.
+            // on verifie que le champ nom // ne soit pas vide // ne soit pas supperieur a 15 carateres.
             if (req.body.nomPouleCoq == ''){
                 req.flash('error', 'merci de remplir le champs nom COQ');
                 res.redirect('names_coq');
             } else if (req.body.nomPouleCoq.length > 15){
                 req.flash('error', 'Le nom ne doit pas depasser 15 caracteres');
                 res.redirect('names_coq');
-            }else if (process.env.grossier.indexOf(req.body.nomPouleCoq.toLowerCase()) != -1){
-                req.flash('error', 'Pas de grossièretés, svp !!');
-                res.redirect('names_coq');
             }else {
+
+                // on verifie que le champ nom ne comporte pas de grossièretés.
+                for (let g of grossier) {
+                    if (g === req.body.nomPouleCoq){
+                        req.flash('error', 'Pas de grossièretés, svp !!');
+                        res.redirect('names_poule');
+                        return
+                    }
+                }
+
                 // on recupere le donnees du formulaire
                 const resultForm = req.body;
 

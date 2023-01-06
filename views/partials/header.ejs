@@ -15,7 +15,9 @@
         </div>
         <div class="header_user">
             <% if (session.User) {%>
-                <p>Bienvenue <strong><%= session.User.pseudo %> </strong> </p>
+                <p>Bienvenue <strong><%= session.User.pseudo %> </strong> 
+                    <a href="#"><img style="height: 25px; width: auto; padding-left: 10px;"src="./images/moncompte.png" alt="moncompte"></a>
+                </p>
             <% } %> 
         </div>
     </div>
