@@ -180,7 +180,7 @@ const ajoutNamesCoq = (req, res, next) => {
                 for (let g of grossier) {
                     if (g === req.body.nomPouleCoq){
                         req.flash('error', 'Pas de grossièretés, svp !!');
-                        res.redirect('names_poule');
+                        res.redirect('names_coq');
                         return
                     }
                 }
