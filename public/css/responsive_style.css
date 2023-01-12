@@ -1,0 +1,11 @@
+body {
+    background-color: rgb(48, 47, 47);
+    height: 100%;
+    width: 100%;
+    
+}
+
+.smallScreen img{
+    max-width: 100%;
+    height: auto;
+}

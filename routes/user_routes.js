@@ -7,6 +7,11 @@ const forgetPassword_controller = require('../controllers/forgetPassword_control
 router.get('/signup', user_controller.sign);
 router.post('/signup', user_controller.signup);
 
+// route pour activer compte user
+router.get('/active', user_controller.active);
+router.get('/renvoie', user_controller.renvoie);
+router.post('/renvoieMail', user_controller.renvoieMail);
+
 // route connection user (se conecter)
 router.get('/login', user_controller.login);
 router.post('/login', user_controller.connect);

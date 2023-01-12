@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('partials/head')%>
+    <title>Josiane</title>
+    <link rel="stylesheet" href="./css/game_style.css">  
+</head>
+<body>
+<%-include('partials/header')%>
+<%-include('partials/nav')%>
+<div>
+    <% if( errors.length) { %> 
+        <h4 style="color: red; font-size: 1.5em;"> <%= errors %>   </h4>    
+    <% } %> 
+</div>
+
+<div><h2>Demande d'activation de compte : </h2></div>
+<div>
+    <form action="renvoieMail" method="post" >
+        <div>
+            <label>info utilisateur</label><br>
+            <input type="email" name="email" placeholder="saisir un email valide">
+            <input type="password" name="password" placeholder="saisir votre mot de passe">
+            <button type="submit">Valider</button>
+        </div>
+    </form>
+    <div>
+        <a href="/forget">Mot de passe oublié</a>
+    </div>
+</div>
+
+</body>
+</html>

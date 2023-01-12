@@ -20,8 +20,57 @@ font-size: 1.5em;
 color: #00ff84;
 }
 
+.title {
+    text-align: center;
+    font-size: 3em;
+    margin: 15px;
+}
 
+.question { 
+        font-size: 2.5em;
+        color: whitesmoke;
+        margin: 20px;
+}
 
+.para {
+    font-size: 1.8em;
+    text-align: justify;
+    margin: 50px;
+    line-height: 1.8em;
+    color: whitesmoke;
+}
+
+.homeText li {
+    font-size: 1.8em;
+    text-align: justify;
+    margin-left: 150px;
+    margin-right: 50px;
+    padding-left: 30px;
+    line-height: 1.8em;
+    list-style-type: circle;
+    color: whitesmoke; 
+}
+
+.plume {
+    height: 100px;
+    width: auto;
+    float: right;
+    margin: 50px;
+}
+
+.josianeVers {
+    height: 220px;
+    width: auto;
+    float: left;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.deco {
+    display: inline;
+    color: #eee897;
+    font-style: oblique;
+}
 
 
 /* mise en forme de la page de erreur404 */

@@ -84,8 +84,6 @@ const changePassword = (req, res, next) => {
             email: result[0].email,
             pseudo: result[0].pseudo,
           })
-          // on enregistre le user dans la session
-          req.session.User = useer;
 
           res.render('changePassword', {
             session: req.session,
@@ -151,8 +149,6 @@ module.exports = {
   updatePass,
 }
 
-// TODO retirer pour mettre email user 
-//const email1 = 'bastien.benariac@gmail.com';
 
 // Functions envoie email appeler sur 'changePassword'
 async function envoiMail(result) {
@@ -167,7 +163,7 @@ async function envoiMail(result) {
     port: 587,
     secure: false, 
     auth: {
-      user: "contact@bloublu.fr", 
+      user: "contact-josiane@bloublu.com", 
       pass: process.env.bloubluPass, 
     },
     tls: {
@@ -177,7 +173,7 @@ async function envoiMail(result) {
   
   // Email envoyé avec destinataire et message
   await transporter.sendMail({
-    from: "'Bloublu - Josiane 🐔'<contact@bloublu.fr>", 
+    from: "'Bloublu - Josiane 🐔'<contact-josiane@bloublu.com>", 
     to: email, 
     subject: "Reinitialisation Mot de passe ✔", 
 
@@ -185,7 +181,7 @@ async function envoiMail(result) {
     +" Bonjour <strong>" + pseudo + "</strong><br><br>"
     +"Suite à votre demande de nouveau mot passe, nous vous invitons à cliquer sur le lien ci-dessous :<br><br>"
     +"<strong> <a href='http://localhost:3000/changePassword?id="+id+"'> Nouveau Mot de Passe </a></strong> <br><br>"
-    +"Si vous n’êtes pas à l'origine de cette action, veuillez nous contacter a l'adresse : <strong> contact@bloublu.fr </strong><br><br>"
+    +"Si vous n’êtes pas à l'origine de cette action, veuillez nous contacter a l'adresse : <strong> contact-josiane@bloublu.com </strong><br><br>"
     +"À bientôt chez Josiane"
     + ` <img src="cid:unique" width="40%" />  </div>`, // html body
 

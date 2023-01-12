@@ -61,10 +61,15 @@ app.use('/forgetPassword',user_routes);
 app.use('/pp',user_routes);
 
 
+
 app.use((req, res) => {
    res.status(404);
    res.render('erreur404'); 
 });
+
+app.use((req, res) => {
+    res.render('tropPetit'); 
+ });
 
 app.listen(port, () => {
     console.log(`Application lancée sur le port ${port}`);
