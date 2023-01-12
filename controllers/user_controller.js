@@ -92,7 +92,6 @@ const signup = (req, res, next) => {
     }  
 }
 
-
 //route renvoie mail GET
 const renvoie = (req, res, next) => {
     try{     
@@ -158,9 +157,6 @@ const renvoieMail = (req, res, next) => {
         console.log(error);
     } 
 }
-
-
-
 
 // route activer compte user GET
 const active = (req, res, next) => {

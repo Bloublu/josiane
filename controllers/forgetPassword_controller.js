@@ -77,20 +77,14 @@ const changePassword = (req, res, next) => {
         if (err || result[0] === undefined){
           req.flash('error', 'Une erreur est survenue, nous n\avons pas reussi a vous indentifié, contactez notre support client. Merci');
           res.redirect('/');
-        }else {
-          // creation obj via requete select bdd
-          const useer = new User ({
-            id: result[0].id,
-            email: result[0].email,
-            pseudo: result[0].pseudo,
-          })
+        }
 
-          res.render('changePassword', {
-            session: req.session,
-            errors: req.flash('error'),
-            infos: req.flash('infos'),
-          });
-        }  
+        res.render('changePassword', {
+          session: req.session,
+          errors: req.flash('error'),
+          infos: req.flash('infos'),
+        });
+         
       });
     });
   }catch(error){
