@@ -3,6 +3,7 @@ const session = require('express-session');
 const nodemailer = require('nodemailer');
 const User = require('../models/user_models');
 const bcrypt = require('bcrypt');
+const { callbackPromise } = require('nodemailer/lib/shared');
 const saltRounds = 10;
 
 // route mot de passe oublié (saisir email) GET
@@ -69,7 +70,6 @@ const changePassword = (req, res, next) => {
       }else if (req.session.User.id != null){
         idUser =  req.session.User.id;
       }
-
       const sql = "SELECT id, email, pseudo FROM users WHERE id = ?";
 
       // Passage REQUETE ASYNC et traitement selon result
@@ -78,6 +78,9 @@ const changePassword = (req, res, next) => {
           req.flash('error', 'Une erreur est survenue, nous n\avons pas reussi a vous indentifié, contactez notre support client. Merci');
           res.redirect('/');
         }
+        
+        // on ajoute le user dans la session
+        req.session.User = result[0];
 
         res.render('changePassword', {
           session: req.session,
@@ -114,12 +117,16 @@ const updatePass =  (req, res, next) => {
         if (err) {
           return next(err);
         }
+
+        // recupere id user via query ou session + requete
+        const idUser =  req.session.User.id;
+      
         //criptage MP + requete
         const saisiPassword = await bcrypt.hash( req.body.password , await bcrypt.genSalt(saltRounds));
-        const sql = " UPDATE users SET password = ? ";
+        const sql = " UPDATE users SET password = ? WHERE id =" +idUser;
 
         // Passage REQUETE ASYNC update password en BDD
-        await connection.query(sql, saisiPassword, (error, row, fields) => {
+        await connection.query(sql, saisiPassword, (error, result, fields) => {
           if (err){
             req.flash('error', 'Une erreur est survenue, veuillez essayer a nouveau, auquel cas contactez le support.');
             res.redirect('changePassword');

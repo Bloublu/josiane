@@ -27,4 +27,9 @@ router.post('/forgetPassword', forgetPassword_controller.resetPassword);
 router.get('/changePassword', forgetPassword_controller.changePassword);
 router.post('/updatePass', forgetPassword_controller.updatePass);
 
+// route param user (modifier ou supprimer compte)
+router.get('/params', user_controller.params);
+router.get('/deleteUser', user_controller.deleteUser)
+router.post('/modifParams', user_controller.modifParams)
+
 module.exports = router;

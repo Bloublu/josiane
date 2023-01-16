@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('partials/head')%>
+    <title>Josiane</title>
+    <link rel="stylesheet" href="./css/home_style.css"> 
+    <script src="./js/responsive.js"></script> 
+</head>
+<body>
+<%-include('partials/header')%>
+<%-include('partials/nav')%>
+
+    <div class="info_message">
+        <% if( infos.length) { %> 
+            <h4> <%= infos %>   </h4>    
+        <% } %> 
+    </div>
+    <div class="error_message">
+        <% if( errors.length) { %> 
+            <h4> <%= errors %>   </h4>    
+        <% } %> 
+    </div>
+
+    <div>
+        <form action="modifParams" method="post">
+            <div>
+                <label>Vos Parametres</label>
+                <input type="email" name="email" value="<%= user[0].email %>">
+                <input type="text" name="pseudo" value="<%= user[0].pseudo %>">
+                <button type="submit">Valider</button>
+            </div>
+        </form>
+        <div>
+            <p>Changer de mon de passe : </p>
+            <a href="/changePassword">Modifier mon mot de passe</a>
+        </div>
+        <div>
+            <p>Supprimer votre compte : </p>
+            <a href="#" onclick="confirmation();"> Suppression Compte </a>
+        </div>
+    </div>
+    <script>
+        function confirmation() {
+        if (confirm("etes-vous sur de vouloir supprimer votre compte definitivement ?" )) {
+        window.location.href = "/deleteUser"
+        }
+        }
+
+    </script>
+   
+</body>
+</html>

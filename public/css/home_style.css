@@ -20,6 +20,13 @@ font-size: 1.5em;
 color: #00ff84;
 }
 
+.error_message{
+    margin-bottom: 15px;
+    text-align: center;
+    font-size: 1.5em;
+    color: red;
+    }
+
 .title {
     text-align: center;
     font-size: 3em;

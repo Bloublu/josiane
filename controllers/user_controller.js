@@ -4,7 +4,9 @@ const nodemailer = require('nodemailer');
 const connection = require('express-myconnection');
 const { request }  = require('express');
 const session = require('express-session');
+const { callbackPromise } = require('nodemailer/lib/shared');
 const saltRounds = 10;
+
 
     
 
@@ -66,6 +68,7 @@ const signup = (req, res, next) => {
                             pseudo: req.body.pseudo,
                             password: saisiMpString,
                             active: false,
+                            adm: false,
                         });
 
                         // On insert le user en BDD
@@ -75,7 +78,7 @@ const signup = (req, res, next) => {
                                 req.flash('error', 'Une erreur est survenue, veuillez essayer a nouveau, auquel cas contactez le support.');
                                 res.redirect('signup');
                             }else {
-
+                                
                                 user.id = result.insertId;
                                 
                                 envoiMail(user).catch(console.error);
@@ -92,7 +95,7 @@ const signup = (req, res, next) => {
     }  
 }
 
-//route renvoie mail GET
+//route renvoie mail Active compte user GET
 const renvoie = (req, res, next) => {
     try{     
         res.render('envoiMail', {
@@ -105,7 +108,7 @@ const renvoie = (req, res, next) => {
    }
 }
 
-// route renvoie mail POST
+// route renvoie mail Active compte user POST
 const renvoieMail = (req, res, next) => {
     try {
         // On verifie: champs pas vide 
@@ -240,12 +243,12 @@ const connect = (req, res, next) => {
                 }
                 // Select user via email saisi + requete MYSQL
                 const mailUser = req.body.email;
-                const sql = "SELECT id, email, pseudo, password, active FROM users WHERE email = ?";
+                const sql = "SELECT id, email, pseudo, password, active, adm FROM users WHERE email = ?";
 
                 // Passage REQUETE ASYNC et redirection selon result
                 await connection.query(sql, mailUser, async (err, result) => {             
                     if (err || result[0] === undefined){
-                        req.flash('error', "Paire login/password incorrect.");
+                        req.flash('error', "Aucun email ne correspond a votre saisi.");
                         res.redirect('login');
                     }else {
                         // creation obj via result requete
@@ -255,8 +258,9 @@ const connect = (req, res, next) => {
                             pseudo: result[0].pseudo,
                             password: result[0].password,
                             active: result[0].active,
+                            adm: result[0].adm,
                         })
-                        console.log(useer);
+                        
                         // variable pour comparer mot de passe (saisi et bdd) avec bcrypt
                         const forSalt = req.body.password;
                         const validPepper = bcrypt.compareSync(forSalt, useer.password);
@@ -299,6 +303,125 @@ const disconnect = (req, res, next) => {
     
 }
 
+// route param user (modifier ou supprimer compte)
+const params = (req, res, next) => {
+    //connection BDD
+    req.getConnection(async (err, connection) =>{
+        if (err) {
+            return next(err);
+        } 
+        
+            // on recupere l'ID du user
+            const idUser = req.session.User.id;
+           
+
+            
+            // on recupere le donnees user de la BDD via id session    
+            await connection.query('SELECT id, email, pseudo FROM users WHERE id = ?', idUser, async (error, User) => {
+                    // envoie infos user a la view
+                    try{     
+                        res.render('params', {
+                            user: User,
+                            infos: req.flash('info'),
+                            errors: req.flash('error'),
+                            session: req.session,
+                        });                       
+                    }catch(error){
+                        console.log(error);
+                    }
+                
+            });    
+        
+    });
+}
+
+// route param pour supprimer compte user 
+const deleteUser = (req, res, next) => {
+    //connection BDD
+    req.getConnection(async (err, connection) =>{
+        if (err) {
+            return next(err);
+        } 
+        
+            // on recupere l'ID du user
+            const idUser = req.session.User.id;
+           
+        try {
+            
+            // on recupere le donnees user de la BDD via id session    
+            await connection.query('DELETE FROM users WHERE id = ?', idUser, async (error, User) => {
+                if (err){
+                    req.flash('error', "Paire login/password incorrect.");
+                    res.redirect('params');
+                }else {
+                    // on supprime le user dans la session
+                    req.session.User = undefined;
+
+                    req.flash('info', 'Votre compte a bien ete supprimer.');
+                    res.redirect('/');
+                }
+            }); 
+        }catch(error){
+            console.log(error);
+        }      
+    });
+}
+
+const modifParams = (req, res, next) => {
+    //connection BDD
+    req.getConnection(async (err, connection) =>{
+        if (err) {
+            return next(err);
+        }
+
+        try { 
+            if (req.session.User.email === req.body.email && req.session.User.pseudo === req.body.pseudo){
+                req.flash('info', 'Pas besoin de valider, vous avez apporté aucune modification à votre compte.');
+                res.redirect('params');
+
+            } else {
+                // on recupere la liste des emails en bdd et on verifie qu'il n'y a pas de doublon avec un autre id
+                await connection.query ('SELECT id, email FROM users', [], async (err, result) => {
+                    for (let r of result) {
+                        if (r.email === req.body.email && r.id != req.session.User.id) {
+                            req.flash('error','cette adresse mail existe déja et est attribuée a un autre utilisateur.');
+                            res.redirect('params');
+                            return;
+                        } 
+                     } //else {
+                            // on recupere l'ID du user
+                            const idUser = req.session.User.id;
+                            //on recupere les données saisi formulaire
+                            const email = req.body.email;
+                            const pseudo = req.body.pseudo;
+                            
+                            // requete sql
+                            const sql = 'UPDATE users SET email = ?, pseudo = ? WHERE id = ?';
+                            
+                            // requete update via saisi form page params    
+                            await connection.query(sql, [email, pseudo, idUser], async (error, User) => {
+                                if (err){
+                                    req.flash('error', "Une erreur est survenue, veuillez essayer a nouveau, auquel cas contactez le support. ");
+                                    res.redirect('params');
+                                }else {
+                                    // on met a jour les info dans la session 
+                                    req.session.User.email = email;
+                                    req.session.User.pseudo = pseudo;
+
+                                    req.flash('info', "Votre compte a bien été modifier. ");
+                                    res.redirect('/');
+                                }
+                            });
+                       // }
+                      
+                    //} 
+                }); 
+            }
+        }catch(error){
+            console.log(error);
+        }      
+   }); 
+}
 
 module.exports = {
     sign,
@@ -308,7 +431,10 @@ module.exports = {
     renvoieMail,
     connect,
     active,
-    disconnect
+    disconnect,
+    params,
+    deleteUser,
+    modifParams,
 }
 
 // Functions envoie email appeler sur 'changePassword'
@@ -350,6 +476,6 @@ async function envoiMail(result) {
         filename: 'josiane&vers.png',
         path: 'public/images/josiane&vers.png',
         cid: 'unique' 
-    }]
+        }]
     });
-  }
+}
