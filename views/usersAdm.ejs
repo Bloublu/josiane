@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('partials/head')%>
+    <title>Josiane</title>
+    <link rel="stylesheet" href="./css/home_style.css"> 
+    <link rel="stylesheet" href="./css/usersAdm_style.css"> 
+    <script src="./js/responsive.js"></script> 
+    
+</head>
+<body>
+<%-include('partials/header')%>
+<%-include('partials/nav')%>
+
+    <div class="info_message">
+        <% if( infos.length) { %> 
+            <h4> <%= infos %>   </h4>    
+        <% } %> 
+    </div>
+    <div class="error_message">
+        <% if( errors.length) { %> 
+            <h4> <%= errors %>   </h4>    
+        <% } %> 
+    </div>
+
+    <div>
+        <h1>Config USERS</h1>
+        <div class="myTable">
+            <table class="tableauUsers">
+                <caption></caption>
+                <tr><th><br></th></tr>
+                <tr>
+                    <th> ID </th>
+                    <td> Email </td>
+                    <td> Pseudo </td>
+                    <td> Active </td>
+                    <td> Adm </td>
+                </tr>
+                <tr><th><br></th></tr>
+                <% user.forEach((U) => { %>
+                    <form action="updateUser" method="post">
+                        <tr>
+                            <th><%= U.id %></th>
+                            <td><input type="email" name="email" value="<%= U.email %>"></td>
+                            <td><input type="text" name="pseudo" value="<%= U.pseudo %>"></td>
+                            <td><% if(U.active != 0){%> 
+                                <input type="checkbox" name="active" checked> 
+                                <% } else { %> 
+                                <input type="checkbox" name="active">
+                                <% } %>     
+                            </td>
+                            <td><% if(U.adm != 0){%> 
+                                <input type="checkbox" name="adm" checked>
+                                <% } else { %> 
+                                <input type="checkbox" name="adm">
+                                <% } %> 
+                            </td>
+                            <td><button type="submit" name="upUsers" value="<%= U.id %>">Valider</button></td>
+                            <td>
+                                 
+                                    <!-- <a href="/admDeleteUser?id=<%= U.id %>" > -->
+                                <button>        
+                                    <a href="#" onclick="confirmation(+<%= U.id %>);">
+                                        Supprimer  
+                                    </a>
+                                </button>
+                            </td>
+                        </tr>
+                    </form>
+                <% }) %>
+            </table>
+        </div>
+       
+    <script>
+        
+        function confirmation(id) {  
+            if (confirm("etes-vous sur de vouloir supprimer ce compte definitivement ?" )) {
+            window.location.href = '/admDeleteUser?id='+id
+            }
+        }
+
+    </script>
+   
+</body>
+</html>

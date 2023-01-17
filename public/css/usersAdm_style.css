@@ -1,0 +1,52 @@
+
+body {
+    text-align: center;
+}
+
+h1 {
+    text-align: center;
+    color: #f3f0c9;
+}
+
+.myTable{
+    text-align: center;
+}
+
+.tableauUsers {
+    width: 100%;
+    height: auto;
+    
+    table-layout: auto;
+    vertical-align: middle;
+    font-size: 1.5em;
+}
+
+.tableauUsers tr input {
+    font-size: 1em;
+    text-align: center;
+    vertical-align: middle;
+}
+
+.tableauUsers tr {
+    text-align: center;
+    height: 50px;
+    font-weight: bolder;
+}
+
+.tableauUsers th {
+    font-size: 1em;
+    font-weight: bolder;
+    text-align: center;
+    vertical-align: middle;
+
+}
+
+.tableauUsers td {
+    font-size: 1em;
+    text-align: center;
+}
+
+.tableauUsers tr:hover {
+    background-color: whitesmoke;
+    color: red;
+}

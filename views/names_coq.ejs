@@ -20,6 +20,9 @@
                   Nom pour un Coq 
                  <img style="float: left; height: 30px; width: auto; padding-left: 10px;" src="../images/josiane.png" alt="poulette">
             </button>
+            <% if (session.User) {%>
+                <button type="submit" formaction="/myNames" class="btn"> Mes idées de noms </button>
+            <% } %>
         </form>
     </div>
 

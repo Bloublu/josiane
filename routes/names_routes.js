@@ -13,5 +13,14 @@ router.post('/ajoutPoule', names_controller.ajoutNamesPoule);
 router.get('/names_coq', names_controller.names_coq);
 router.post('/ajoutCoq', names_controller.ajoutNamesCoq);
 
+// route myNames (noms poule et coq selon id user)
+router.get('/myNames', names_controller.myName);
+router.post('/suppNamePoule', names_controller.suppNamePoule);
+router.post('/suppNameCoq', names_controller.suppNameCoq);
+
+// route pour les Administrateurs names
+router.get('/nomAdm', names_controller.nomAdm);
+router.post('/admSuppNamePoule', names_controller.ADMsuppNamePoule);
+router.post('/admsSuppNameCoq', names_controller.ADMsuppNameCoq);
 
 module.exports = router;

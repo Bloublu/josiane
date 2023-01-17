@@ -20,7 +20,9 @@
                 </button>
                 <button type="submit" formaction="/names_poule" class="btn"> Nom pour une Poule </button>
                 <button type="submit" formaction="/names_coq" class="btn"> Nom pour un Coq </button>
-            </form>
+                <% if (session.User) {%>
+                    <button type="submit" formaction="/myNames" class="btn"> Mes idées de noms </button>
+                <% } %>            </form>
         </div>
         <img class="paulette" src="../images/paulette.png" alt="paulette">
         <div class="nomPoule">

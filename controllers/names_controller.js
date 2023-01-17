@@ -227,6 +227,186 @@ const ajoutNamesCoq = (req, res, next) => {
     });
 };
 
+// route myName (noms poule et coq selon id user) GET
+const myName = (req, res, next) => {
+    //connection BDD
+    req.getConnection(async (err, connection) =>{
+        if (err) {
+            return next(err);
+        } 
+        // on recupere l'id user via session
+        const idUser = req.session.User.id;
+
+        // on recupere le donnees de la BDD pour la tables nompoules et nomcoqs SEULEMENT ceux qui ont id de l'user    
+        await connection.query('SELECT id, nom FROM nompoules WHERE user_id = ?', idUser, (error, nameP) => {
+            connection.query('SELECT id, nom FROM nomcoqs WHERE user_id = ?', idUser, (error, nameC) => {
+                // envoie des listes de nom a la view
+                try{     
+                    res.render('myNames', {
+                        nameP: nameP,
+                        nameC: nameC,
+                        infos: req.flash('info'),
+                        errors: req.flash('error'),
+                        session: req.session,
+                    });                       
+                }catch(error){
+                    console.log(error);
+                }
+            });
+        });    
+    }); 
+}
+
+// route myName ( supprimer noms poule selon id name) POST
+const suppNamePoule = (req, res, next) => {
+    //connection BDD
+    req.getConnection(async (err, connection) =>{
+        if (err) {
+            return next(err);
+        } 
+        
+            // on recupere l'ID du nom
+            const idName = req.body.supp;
+           
+        try {
+            
+            // on passe la requete DELETE et on redirige    
+            await connection.query('DELETE FROM nompoules WHERE id = ?', idName, async (error, result) => {
+                if (err){
+                    req.flash('error', "Une erreur est survenue lors de la suppression de votre idée.");
+                    res.redirect('myNames');
+                }else {
+                    req.flash('info', 'Votre idée a été supprimé.');
+                    res.redirect('myNames');
+                }
+            }); 
+        }catch(error){
+            console.log(error);
+        }      
+    });
+}
+
+// route myName ( supprimer noms coq selon id name) POST
+const suppNameCoq = (req, res, next) => {
+    //connection BDD
+    req.getConnection(async (err, connection) =>{
+        if (err) {
+            return next(err);
+        } 
+        
+            // on recupere l'ID du nom
+            const idName = req.body.supp;
+           
+        try {
+            
+            // on passe la requete DELETE et on redirige    
+            await connection.query('DELETE FROM nomcoqs WHERE id = ?', idName, async (error, result) => {
+                if (err){
+                    req.flash('error', "Une erreur est survenue lors de la suppression de votre idée.");
+                    res.redirect('myNames');
+                }else {
+                    req.flash('info', 'Votre idée a été supprimé.');
+                    res.redirect('myNames');
+                }
+            }); 
+        }catch(error){
+            console.log(error);
+        }      
+    });
+}
+
+// route nomAdm (noms poule et coq pour les ADM) GET
+const nomAdm = (req, res, next) => {
+    //connection BDD
+    req.getConnection(async (err, connection) =>{
+        if (err) {
+            return next(err);
+        } 
+        // On recupere champ adm user via session
+        const idAdm = req.session.User.adm;
+        if (!idAdm) {
+            req.flash('error','vous ne pouvez acceder a cette page.');
+            res.redirect('/');
+        }else {
+
+            // on recupere TOUTES les donnees de la BDD pour la tables nompoules et nomcoqs    
+            await connection.query('SELECT id, nom, user_id FROM nompoules ORDER BY nom ASC', (error, nameP) => {
+                connection.query('SELECT id, nom, user_id FROM nomcoqs ORDER BY nom ASC', (error, nameC) => {
+                    // envoie des listes de nom a la view
+                    try{     
+                        res.render('nomAdm', {
+                            nameP: nameP,
+                            nameC: nameC,
+                            infos: req.flash('info'),
+                            errors: req.flash('error'),
+                            session: req.session,
+                        });                       
+                    }catch(error){
+                        console.log(error);
+                    }
+                });
+            });
+        }    
+    });
+}
+
+// route myName ( supprimer noms poule selon id name) POST
+const ADMsuppNamePoule = (req, res, next) => {
+    //connection BDD
+    req.getConnection(async (err, connection) =>{
+        if (err) {
+            return next(err);
+        } 
+        
+            // on recupere l'ID du nom
+            const idName = req.body.supp;
+           
+        try {
+            
+            // on passe la requete DELETE et on redirige    
+            await connection.query('DELETE FROM nompoules WHERE id = ?', idName, async (error, result) => {
+                if (err){
+                    req.flash('error', "Une erreur est survenue lors de la suppression de votre idée.");
+                    res.redirect('nomAdm');
+                }else {
+                    req.flash('info', 'Votre idée a été supprimé.');
+                    res.redirect('nomAdm');
+                }
+            }); 
+        }catch(error){
+            console.log(error);
+        }      
+    });
+}
+
+// route myName ( supprimer noms coq selon id name) POST
+const ADMsuppNameCoq = (req, res, next) => {
+    //connection BDD
+    req.getConnection(async (err, connection) =>{
+        if (err) {
+            return next(err);
+        } 
+        
+            // on recupere l'ID du nom
+            const idName = req.body.supp;
+           
+        try {
+            
+            // on passe la requete DELETE et on redirige    
+            await connection.query('DELETE FROM nomcoqs WHERE id = ?', idName, async (error, result) => {
+                if (err){
+                    req.flash('error', "Une erreur est survenue lors de la suppression de votre idée.");
+                    res.redirect('nomAdm');
+                }else {
+                    req.flash('info', 'Votre idée a été supprimé.');
+                    res.redirect('nomAdm');
+                }
+            }); 
+        }catch(error){
+            console.log(error);
+        }      
+    });
+}
 
 module.exports = {
     names,
@@ -234,4 +414,11 @@ module.exports = {
     ajoutNamesPoule,
     names_coq,
     ajoutNamesCoq,
+    myName,
+    suppNamePoule,
+    suppNameCoq,
+    nomAdm,
+    ADMsuppNamePoule,
+    ADMsuppNameCoq,
+
 };

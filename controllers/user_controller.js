@@ -291,7 +291,7 @@ const connect = (req, res, next) => {
     } 
 }
 
-//route deconnection user (se deconecter)
+//route deconnection user (se deconecter) GET
 const disconnect = (req, res, next) => {
     try{     
         // on supprime le user dans la session
@@ -303,7 +303,7 @@ const disconnect = (req, res, next) => {
     
 }
 
-// route param user (modifier ou supprimer compte)
+// route param user (modifier ou supprimer compte) GET
 const params = (req, res, next) => {
     //connection BDD
     req.getConnection(async (err, connection) =>{
@@ -335,7 +335,7 @@ const params = (req, res, next) => {
     });
 }
 
-// route param pour supprimer compte user 
+// route param pour supprimer compte user GET
 const deleteUser = (req, res, next) => {
     //connection BDD
     req.getConnection(async (err, connection) =>{
@@ -367,6 +367,7 @@ const deleteUser = (req, res, next) => {
     });
 }
 
+// route param pour modifier compte user POST
 const modifParams = (req, res, next) => {
     //connection BDD
     req.getConnection(async (err, connection) =>{
@@ -423,6 +424,113 @@ const modifParams = (req, res, next) => {
    }); 
 }
 
+// route ADM param pour modifier ou supprimer compte user GET
+const usersAdm = (req, res, next) => {
+    //connection BDD
+    req.getConnection(async (err, connection) =>{
+        if (err) {
+            return next(err);
+        } 
+        
+        // On recupere champ adm user via session
+        const idAdm = req.session.User.adm;
+        if (!idAdm) {
+            req.flash('error','vous ne pouvez acceder a cette page.');
+            res.redirect('/');
+        }else {
+            
+            // on recupere le donnees user de la BDD via id session    
+            await connection.query('SELECT id, email, pseudo, active, adm FROM users', async (error, User) => {
+                // envoie infos user a la view
+                try{     
+                    res.render('usersAdm', {
+                        user: User,
+                        infos: req.flash('info'),
+                        errors: req.flash('error'),
+                        session: req.session,
+                    });                       
+                }catch(error){
+                    console.log(error);
+                }
+                
+            }); 
+        }   
+        
+    });
+}
+
+// route ADM param pour Modifier compte user POST
+const updateUser = (req, res, next) => {
+    //connection BDD
+    req.getConnection(async (err, connection) =>{
+        if (err) {
+            return next(err);
+        } 
+        
+            // on recupere l'id du user a mettre a jour
+            const idUser = req.body.upUsers;
+
+            // on recupere nos saisis du form pour update
+            let active = false;
+            if (req.body.active == 'on'){active = true;}
+
+            let adm = false;
+            if (req.body.adm == 'on'){adm = true;}
+
+            let email =  req.body.email;
+            let pseudo = req.body.pseudo;
+           
+        try {
+            // requete sql
+            const sql = 'UPDATE users SET email = ?, pseudo = ?, active = ?, adm = ? WHERE id = ?';
+
+            // on passe la requete update et on redirige    
+            await connection.query(sql, [email, pseudo, active, adm, idUser], async (error, result) => {
+                if (err){
+                    req.flash('error', "Une erreur est survenu");
+                    res.redirect('usersAdm');
+                }else {
+                    req.flash('info', 'Le compte a bien été mis a jour.');
+                    res.redirect('usersAdm');
+                }
+            }); 
+        }catch(error){
+            console.log(error);
+        }      
+    });
+}
+
+// route ADM param pour Supprimer compte user POST
+const admDeleteUser = (req, res, next) => {
+    //connection BDD
+    req.getConnection(async (err, connection) =>{
+        if (err) {
+            return next(err);
+        } 
+        
+        // on recupere l'id du user a mettre a jour
+         const idUser = req.query.id;
+           
+        try {
+            // requete sql
+            const sql = 'DELETE FROM users WHERE id = ?';
+
+            // on passe la requete update et on redirige    
+            await connection.query(sql, idUser, async (error, result) => {
+                if (err){
+                    req.flash('error', "Une erreur est survenu");
+                    res.redirect('usersAdm');
+                }else {
+                    req.flash('info', 'Le compte a bien été supprimé.');
+                    res.redirect('usersAdm');
+                }
+            }); 
+        }catch(error){
+            console.log(error);
+        }      
+    });
+}
+
 module.exports = {
     sign,
     login,
@@ -435,6 +543,9 @@ module.exports = {
     params,
     deleteUser,
     modifParams,
+    usersAdm,
+    updateUser,
+    admDeleteUser,
 }
 
 // Functions envoie email appeler sur 'changePassword'

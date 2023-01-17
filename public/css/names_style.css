@@ -16,7 +16,16 @@ h1 {
     grid-column: 2/9;
     grid-row: 1 ; 
     row-gap: 0; 
-    margin: 25px;  
+    margin: 20px; 
+    text-align: center;
+ 
+}
+
+.messNames {
+    grid-column: 2/9;
+    grid-row: 2 ;
+    text-align: center;
+    
 }
 
 .lienBtn {
@@ -45,7 +54,7 @@ h1 {
 .nomPoule {
     grid-row: 2/6 ;
     grid-column: 3/5;
-    margin: 20px;
+    margin: 25px;
     width: 100%;
     height: auto;
     text-align: center;
@@ -81,7 +90,7 @@ h1 {
 .nomCoq {
     grid-row: 2/6 ;
     grid-column: 6/8;
-    margin: 20px;
+    margin: 25px;
     width: 100%;
     height: auto;
     text-align: center;
@@ -154,6 +163,25 @@ h1 {
 }
 .buttonInscription a:hover {
     background-color: rgb(117, 114, 114);
+}
+
+.btnPoub {
+    height: 30px;
+    width: 30px;
+    background-color: #f3f0c9e8;
+    margin-left: 40px;
+    border: none;
+    text-align: justify;
+}
+
+.btnPoub img {
+    height: 20px;
+    width: 20px;
+    text-align: center;
+}
+
+.btnPoub img:hover {
+    cursor: pointer;
 }
 
 footer {

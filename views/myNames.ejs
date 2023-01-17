@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <%-include('partials/head')%>
+    <title>Josiane</title>
+    <link rel="stylesheet" href="./css/names_style.css">  
+    <link rel="stylesheet" href="./css/namesHome_style.css">  
+</head>
+<body>
+<%-include('partials/header')%>
+<%-include('partials/nav')%>
+
+    <main class="pNames">
+        <h1>Mes idées de NOMS</h1>
+        <div class="messNames">
+            <div>
+                <% if( errors.length) { %> 
+                    <h4 style="color: red; font-size: 1.5em;"> <%= errors %>   </h4>    
+                <% } %> 
+            </div>
+            <div>
+                <% if( infos.length) { %> 
+                    <h4 style="color: #04d26e; font-size: 1.5em;"> <%= infos %>   </h4>    
+                <% } %> 
+            </div>
+        </div>
+        <div class="lienBtn">
+            <form>
+                <button type="submit" formaction="/names" class="btn">Nom Poule & Coq </button>
+                <button type="submit" formaction="/names_poule" class="btn"> Nom pour une Poule </button>
+                <button type="submit" formaction="/names_coq" class="btn"> Nom pour un Coq </button>
+                <% if (session.User) {%>
+                <button type="submit" formaction="/myNames" class="btn"> 
+                    Mes idées de noms 
+                    <img style="float: left; height: 30px; width: auto; padding-left: 10px;" src="../images/josiane.png" alt="poulette">
+                </button>
+                <% } %>
+            </form>
+        </div>
+        <img class="paulette" src="../images/paulette.png" alt="paulette">
+        <div class="nomPoule">
+            <h4> Mes noms de Poule</h4>
+            <div>
+                <ul>
+                    <% nameP.forEach((P) => { %>
+                        <form action="/suppNamePoule" method="post">
+                            <li>
+                                <%= P.nom %> 
+                                <button class="btnPoub" type="submit" name="supp" value="<%= P.id %>"><img src="./images/poubelle.png" alt="poubelle"></button>
+                            </li>
+                        </form><br>
+                    <% }); %> 
+                    <% if (nameP.length == 0) { %>
+                        <li> Bah alors ? Vous n'avez pas d'idée.</li>
+                    <% } %> 
+                </ul> 
+            </div>
+        </div>
+        <img class="coqMarco" src="../images/coqMarco.png" alt="coqMarco">
+        <div class="nomCoq">
+            <h4> Mes noms de Coq</h4>
+            
+            <div>
+                <ul>
+                    <% nameC.forEach((P) => { %>
+                        <form action="/suppNameCoq" method="post">
+                            <li>
+                                <%= P.nom %> 
+                                <button class="btnPoub" type="submit" name="supp" value="<%= P.id %>"><img src="./images/poubelle.png" alt="poubelle"></button>
+                            </li>
+                        </form><br>
+                    <% }); %> 
+                    <% if (nameC.length == 0) { %>
+                        <li> Bah alors ? Vous n'avez pas d'idée.</li>
+                    <% } %> 
+                </ul> 
+            </div>
+        </div>
+    </main>
+    <footer style="background-color: green;">
+        <p>ceci est mon footer</p>
+    </footer>
+</body>
+</html>

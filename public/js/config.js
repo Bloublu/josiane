@@ -38,8 +38,7 @@ let grossier = ['bite','baisable', 'baise','baiser','bander','branler','branlett
 'siphonné','sous-merde','tafiole','tantouze','tapette','taré','tarlouze','tas de merde',
 'tête de gland','tocard','toqué','trainéé','trainé','tronche de cake','trou du cul',
 'trouduc','truie','vaurien','vieux con','vilain','vilaine','vioc','vioque','voyou',
-'zinzin','zouave','zoulou','nichon','nichons'];
-
-
+'zinzin','zouave','zoulou','nichon','nichons','pd','cretin'];
 
 module.exports = [grossier];
+

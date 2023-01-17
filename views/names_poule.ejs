@@ -21,7 +21,9 @@
                 <img style="float: left; height: 30px; width: auto; padding-left: 10px;" src="../images/josiane.png" alt="poulette">
             </button>
             <button type="submit" formaction="/names_coq" class="btn"> Nom pour un Coq </button>
-        </form>
+            <% if (session.User) {%>
+                <button type="submit" formaction="/myNames" class="btn"> Mes idées de noms </button>
+            <% } %>        </form>
     </div>
 
     <h1>Nom pour une poule</h1>

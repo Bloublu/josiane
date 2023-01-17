@@ -25,4 +25,11 @@
     align-self: flex-end;
     position: absolute;
     z-index: -1;
+    
+}
+
+@media (max-width: 1350px){
+    .rico {
+        display: none;
+    }
 }
