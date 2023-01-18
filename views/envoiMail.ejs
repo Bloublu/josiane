@@ -3,31 +3,33 @@
 <head>
     <%-include('partials/head')%>
     <title>Josiane</title>
-    <link rel="stylesheet" href="./css/game_style.css">  
+    <link rel="stylesheet" href="./css/users_style.css">  
 </head>
 <body>
 <%-include('partials/header')%>
 <%-include('partials/nav')%>
-<div>
-    <% if( errors.length) { %> 
-        <h4 style="color: red; font-size: 1.5em;"> <%= errors %>   </h4>    
-    <% } %> 
-</div>
-
-<div><h2>Demande d'activation de compte : </h2></div>
-<div>
-    <form action="renvoieMail" method="post" >
+    <main>
         <div>
-            <label>info utilisateur</label><br>
-            <input type="email" name="email" placeholder="saisir un email valide">
-            <input type="password" name="password" placeholder="saisir votre mot de passe">
-            <button type="submit">Valider</button>
+            <% if( errors.length) { %> 
+                <h4 style="color: red; font-size: 1.5em;"> <%= errors %>   </h4>    
+            <% } %> 
         </div>
-    </form>
-    <div>
-        <a href="/forget">Mot de passe oublié</a>
-    </div>
-</div>
 
+        <div><h3>Demande d'activation de compte : </h3></div>
+        <div>
+            <form action="renvoieMail" method="post" >
+                <div>
+                    <p class="monText">Email : </p>
+                    <input type="email" name="email" placeholder="saisir un email valide"><br>
+                    <p class="monText">Mot de Passe : </p>
+                    <input type="password" name="password" placeholder="saisir votre mot de passe"><br>
+                    <button type="submit">Valider</button>
+                </div>
+            </form>
+            <div>
+                <a class="lienMP" href="/forget">Mot de passe oublié</a>
+            </div>
+        </div>
+    </main>
 </body>
 </html>

@@ -1,4 +1,7 @@
 
+.pNames {
+    text-align: center;
+}
 
 .listPoule {
     grid-row: 3/6 ;

@@ -16,6 +16,7 @@
     grid-column: 1;
     grid-row-start: 1;
     grid-row-end: 3;
+    margin-top: 10px;
 }
 
 .header_img img {
@@ -26,7 +27,7 @@
 
 /* css titre header */
 .header_title {
-    grid-column: 2 / span 3;
+    grid-column: 2 /span 3;
     grid-row: 1;
     align-self: center;
     color: white;
@@ -50,6 +51,12 @@
     font-size: 1.5em;
     color: #fff;
     text-decoration: none;
+    
+}
+
+.linkHidden{
+  text-decoration: none;
+  color: whitesmoke;
 }
 
 .header_ahref a:hover {
@@ -94,12 +101,13 @@
     height: var(--hauteur-menu);
     list-style-type: none;
   }
-   
+  
   nav ul {
     list-style-type: none;
   }
   
   nav > ul > li {
+    display: inline;
     background-color: white;
     position: relative;
     height: 100%;

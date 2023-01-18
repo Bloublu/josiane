@@ -1,4 +1,8 @@
 
+.pNames {
+    text-align: center;
+}
+
 .listCoq {
     grid-row: 3/6 ;
     grid-column: 3/8;

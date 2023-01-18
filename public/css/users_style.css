@@ -1,0 +1,52 @@
+
+body {
+    background-color: rgb(48, 47, 47);
+    color: whitesmoke;
+}
+
+main {
+    text-align: center;
+}
+
+h3 {
+    margin: 40px;
+    font-size: 2em;
+}
+
+
+input {
+    
+    height: 30px;
+    width: 40%;
+    margin: 10px;
+    font-size: 1.8em;
+    
+}
+
+button {
+    height: 30px;
+    width: 20%;
+    margin: 10px;
+    font-size: 1.8em;
+    background-color: #f3f0c9;
+    border: solid 1.5px #eee6a7;
+}
+
+button:hover {
+    background-color: #f6eb9c;
+    
+}
+
+.lienMP {
+    font-size: 1.5em;
+    color: rgb(107, 107, 254);
+}
+
+.lienMP:hover {
+    
+    color: rgb(22, 22, 250);
+}
+
+.monText {
+    font-size: 2em;
+}

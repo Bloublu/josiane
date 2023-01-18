@@ -1,10 +1,13 @@
-body {
-    background: #272525;
-    background : linear-gradient(margin-top, #272525, #fffcb9e8); 
+
+.game {
+    background-color: #f3f0c9;
 }
 
-.gameEggs {
-    display: block;
+body {
+    background: #272525;
+}
+
+main {
     text-align: center;
 }
 
@@ -41,16 +44,14 @@ ul li div a h3 {
     list-style-type: none;
 }
 
-.Jeux {
+.Jeux ul li {
     display: inline-block;
-    margin: auto;
-    text-align: center;
-    vertical-align: center;
+    vertical-align: middle;
+}
+
+.Jeux {
+    margin: 100px;
 }
 
 /** fin page games **/
 
-.imgJosianeVers {
-    height: 250px;
-    width: auto;
-}
