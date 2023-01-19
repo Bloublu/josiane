@@ -7,10 +7,11 @@ const session = require('express-session');
 const flash = require('connect-flash')
 const home_routes = require('./routes/home_routes');
 const names_routes = require('./routes/names_routes');
-const astucePartage_routes = require('./routes/astucePartage_routes');
+const astuces_routes = require('./routes/astuces_routes');
 const recette_routes = require('./routes/recette_routes');
 const games_routes = require('./routes/games_routes');
 const user_routes = require('./routes/user_routes');
+
 
 //connection Bdd
 const mysql = require('mysql'), // node-mysql module
@@ -50,7 +51,7 @@ app.use('/', home_routes);
 app.use('/', names_routes);
 app.use('/ajoutPoule',names_routes);
 app.use('/ajoutCoq',names_routes);
-app.use('/', astucePartage_routes);
+app.use('/', astuces_routes);
 app.use('/', recette_routes);
 app.use('/', games_routes);
 app.use('/',user_routes);

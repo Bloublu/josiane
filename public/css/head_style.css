@@ -102,19 +102,17 @@
     list-style-type: none;
   }
   
-  nav ul {
-    list-style-type: none;
-  }
-  
   nav > ul > li {
-    display: inline;
+    display: inline-block;
     background-color: white;
     position: relative;
     height: 100%;
     flex: 1;
   }
+
   nav > ul > li > a {
     position: absolute;
+    width: 100%;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
