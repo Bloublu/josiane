@@ -3,21 +3,49 @@
 <head>
     <%-include('partials/head') %>
     <title>Josiane</title>
-    <link rel="stylesheet" href="./css/astucePartage_style.css">  
+    <link rel="stylesheet" href="./css/astuces_style.css">  
 </head>
 <body>
 <%-include('partials/header')%>
 <%-include('partials/nav')%>
     <main>
         <h1>Astucieux tu commence a comprendre ahah </h1>
-        <ul>
-            <% astuce.forEach((a) => { %> 
-                <li> <%= a.date %> </li>
-                <li> <%= a.titre  %> </li>
-                <li> <%= a.texte  %> </li>
-                <li> <%= a.photo  %> </li>
+
+        <% if(session.User != null) { %> 
+            
+            <div class="buttonInscription">
+                <p>Vous avez un conseil ou une astuce, hésitez pas : </p>
+                <a href="#"> Partager </a>
+                
+            </div>
+            
+        <% } else { %> 
+            <div class="buttonInscription">
+                <p>Pour partager vos idées, vous devez : </p>
+                <a href="/signup">Vous inscrire</a>
+                <a href="/login">Vous connecter</a>
+            </div>
+        <% } %>
+
+        
+        <ul class="ensAstuce">
+            <% astuce.forEach((a) => { %>
+                <div class="grid"> 
+                    <div class="listAstuce">
+                        <li> <%= a.date %> </li>
+                        <li> <%= a.titre  %> </li>
+                        <li> <%= a.texte  %> </li>
+                        <li> 
+                            <% if (a.photo != null) { %> 
+                                <%= a.photo  %> </li>
+                            <% } else { %>
+                                <img class="photoJojo" src="./images/josiane&vers.png" alt="Josiane et vers">    
+                            <% } %> 
+                    </div>
+                </div>
             <%}); %> 
-        </ul>
+        </ul>         
+        
     </main>
 </body>
 </html>

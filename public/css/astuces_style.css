@@ -1,0 +1,80 @@
+.astucePartage  {
+    background-color: #fffcb9e8;
+}
+
+body {
+    background-color: rgb(48, 47, 47);
+}
+main {
+    text-align: center;  
+}
+
+h1 {
+    margin: 20px;
+    color: whitesmoke;
+}
+
+
+.ensAstuce {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
+    width: 100%;
+    height: auto;
+    margin-top: 30px;
+    list-style-type: none;
+    
+    
+}
+.grid {
+    display: inline-grid;
+    justify-items: center;
+    align-self: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+
+    
+    
+}
+.listAstuce {
+    width: 85%;
+    height: 200px;
+
+    border: solid 2px #a5a361;
+    box-shadow: 5px 2px 0 whitesmoke;
+    background-color: #fffcb9e8;
+    text-decoration: none;
+
+}
+
+.buttonInscription {
+    background-color: #fffcb9e8;
+    box-shadow: 5px 5px 0 whitesmoke;
+    color: black;
+    padding: 0.3em 1em;
+    text-decoration: none;
+    display: inline-block;
+    position: relative;
+}
+.buttonInscription p {
+    display: inline-block;
+    padding-right: 2em;
+    font-size: 1.5em;
+    font-weight: bold; 
+}
+.buttonInscription a {
+    color: black;
+    padding-right: 2em;
+    padding-left: 2em;
+    text-decoration: none;
+    font-size: 1.5em; 
+    font-weight: bold;   
+}
+.buttonInscription a:hover {
+    background-color: whitesmoke;
+}
+
+.photoJojo {
+    height: 50px;
+    width: auto;
+}
