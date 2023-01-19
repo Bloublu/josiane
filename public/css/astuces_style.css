@@ -18,7 +18,7 @@ h1 {
 .ensAstuce {
     display: grid;
     grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: auto;
+    
     width: 100%;
     height: auto;
     margin-top: 30px;
@@ -26,26 +26,52 @@ h1 {
     
     
 }
-.grid {
+
+.linkImg {
+    text-decoration: none;
+    color: black;
     display: inline-grid;
     justify-items: center;
     align-self: center;
     margin-top: 20px;
     margin-bottom: 20px;
-
-    
-    
 }
+
 .listAstuce {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: auto;
     width: 85%;
     height: 200px;
-
     border: solid 2px #a5a361;
     box-shadow: 5px 2px 0 whitesmoke;
     background-color: #fffcb9e8;
     text-decoration: none;
-
 }
+
+.listAstuce:active {
+    box-shadow: 5px 2px 0 rgb(48, 47, 47);
+}
+
+.photo {
+    grid-column: 1;
+    grid-row: 1/3 ;
+    align-self: center;
+}
+.titre {
+    grid-column: 2;
+    grid-row: 1/2 ;
+    font-size: 3em;
+}
+.Ddate {
+    grid-column: 2;
+    grid-row: 2;
+    align-self: end;
+    font-size: 1.5em;
+    padding-bottom: 5px;
+}
+
+
 
 .buttonInscription {
     background-color: #fffcb9e8;
@@ -75,6 +101,6 @@ h1 {
 }
 
 .photoJojo {
-    height: 50px;
+    height: 200px;
     width: auto;
 }
