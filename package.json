@@ -19,5 +19,14 @@
     "express-session": "^1.17.3",
     "mysql": "^2.18.1",
     "nodemailer": "^6.8.0"
-  }
+  },
+  "devDependencies": {},
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Bloublu/josiane.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Bloublu/josiane/issues"
+  },
+  "homepage": "https://github.com/Bloublu/josiane#readme"
 }
