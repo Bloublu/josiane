@@ -27,25 +27,7 @@
             </div>
         <% } %>
 
-        
-        <ul class="ensAstuce">
-            <% astuce.forEach((a) => { %>
-                <a class="linkImg"  href="astuce?id=<%=a.id%>">
-                        <div class="listAstuce">
-                            <li class="photo"> 
-                                <% if (a.photo != null) { %> 
-                                    <%= a.photo  %> 
-                                <% } else { %>
-                                    <img class="photoJojo" src="./images/josiane&vers.png" alt="Josiane et vers">    
-                                <% } %> 
-                            </li>
-                            <li class="titre"> <%= a.titre  %> </li>
-                            <li class="Ddate"> <%= a.date %> </li>  
-                        </div>
-                </a>
-            <%}); %> 
-        </ul>         
-        
+
     </main>
 </body>
 </html>

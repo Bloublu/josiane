@@ -3,7 +3,7 @@ const connection = require('express-myconnection');
 const Astuce = require('../models/Astuce_models');
 const date = require('date-and-time');
 
-
+// page astuces GET 
 const astuce = (req, res, next) => {
     //connection BDD
     req.getConnection(async (err, connection) =>{
@@ -49,6 +49,25 @@ const astuce = (req, res, next) => {
     });
 }
 
+// page Astuce avec id GET
+const astuceId = (req, res, next) => {
+    const toto = req.query.id;
+    console.log(toto);
+    console.log('Alors ?? ');
+
+    try{     
+        res.render('astuce', {
+            
+            infos: req.flash('info'),
+            errors: req.flash('error'),
+            session: req.session,
+        });                       
+    }catch(error){
+        console.log(error);
+    }
+}
+
 module.exports = {
     astuce,
+    astuceId,
 };
